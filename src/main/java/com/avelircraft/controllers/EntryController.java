@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(path = {"/login", "/login.html"})
-public class EntryController {
+public class EntryController extends BaseController {
 
     @Autowired
     private UsersDataService usersDataService;
@@ -31,7 +31,7 @@ public class EntryController {
     @RequestMapping(path = "", method = RequestMethod.GET)
     public String loginPage(Model model) { return "login"; }
 
-    @RequestMapping(path = "", method = RequestMethod.POST)
+/*    @RequestMapping(path = "", method = RequestMethod.POST)
     public String logMe(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         @RequestParam(required = false) boolean remember_me,
@@ -46,9 +46,9 @@ public class EntryController {
         //session.setAttribute("role", roles);
 
         return "redirect:/lk";
-    }
+    }*/
 
-    @RequestMapping(path = "/new", method = RequestMethod.POST)
+/*    @RequestMapping(path = "/new", method = RequestMethod.POST)
     public String regMe(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         HttpSession session) {
@@ -63,5 +63,5 @@ public class EntryController {
 //        session.setAttribute("user", user);
 //        session.setAttribute("log_date", System.currentTimeMillis());
         return "redirect:/lk";
-    }
+    }*/
 }

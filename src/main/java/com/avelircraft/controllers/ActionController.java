@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/act")
-public class ActionController {
+public class ActionController extends BaseController {
 
     private File dir;
 
@@ -43,11 +43,10 @@ public class ActionController {
     @RequestMapping(path = "/news/comment", method = RequestMethod.POST)
     public RedirectView commentNews(@RequestParam("news_id") Integer nId,
                                     @RequestParam("message") String message,
-                                    HttpSession session,
                                     RedirectAttributes attr) {
         if (nId == 0)
             return new RedirectView("/");
-        User user = (User) session.getAttribute("user");
+        User user = getCurrentUser();
         if (user == null)
             return new RedirectView("/error");
         Optional<News> news = newsDataService.findById(nId);
@@ -63,9 +62,8 @@ public class ActionController {
     }
 
     @RequestMapping(path = "/news/delete", method = RequestMethod.POST)
-    public String deleteNews(@RequestParam("news_id") Integer nId,
-                             HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public String deleteNews(@RequestParam("news_id") Integer nId) {
+        User user = getCurrentUser();
         boolean deleteAccess = user != null && user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
@@ -76,9 +74,8 @@ public class ActionController {
     }
 
     @RequestMapping(path = "/guide/delete", method = RequestMethod.POST)
-    public String deleteGuide(@RequestParam("guide_id") Integer gId,
-                              HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public String deleteGuide(@RequestParam("guide_id") Integer gId) {
+        User user = getCurrentUser();
         boolean deleteAccess = user != null && user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
@@ -91,9 +88,8 @@ public class ActionController {
     @RequestMapping(path = "/news/comment/delete", method = RequestMethod.POST)
     public RedirectView deleteComment(@RequestParam("news_id") Integer nId,
                                       @RequestParam("comment_id") Long cId,
-                                      HttpSession session,
                                       RedirectAttributes attr) {
-        User user = (User) session.getAttribute("user");
+        User user = getCurrentUser();
         if (user == null)
             return new RedirectView("/error");
         Optional<Comment> com = commentsDataService.findById(cId);
@@ -109,9 +105,8 @@ public class ActionController {
 
     @RequestMapping(path = "/admin/privilege", method = RequestMethod.POST)
     public String grantPrivilege(@RequestParam("name") String username,
-                                 @RequestParam("priveleg") String privilege,
-                                 HttpSession session) {
-        User user = (User) session.getAttribute("user");
+                                 @RequestParam("priveleg") String privilege) {
+        User user = getCurrentUser();
         boolean access = user != null && user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
@@ -133,9 +128,8 @@ public class ActionController {
     }
 
     @RequestMapping(path = "/admin/delete_user", method = RequestMethod.POST)
-    public String deleteUser(@RequestParam("name") String username,
-                             HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public String deleteUser(@RequestParam("name") String username) {
+        User user = getCurrentUser();
         boolean access = user != null && user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("admin"));
@@ -151,9 +145,8 @@ public class ActionController {
     @RequestMapping(path = "/support", method = RequestMethod.POST)
     public RedirectView support(@RequestParam("tagsupport") String topic,
                                 @RequestParam("descsupport") String message,
-                                HttpSession session,
                                 RedirectAttributes attr) {
-        User user = (User) session.getAttribute("user");
+        User user = getCurrentUser();
         if (user == null)
             return new RedirectView("/error");
         SupportRequest supportRequest = new SupportRequest(user.getId(), topic);
@@ -167,9 +160,8 @@ public class ActionController {
     @RequestMapping(path = "/support/comment", method = RequestMethod.POST)
     public RedirectView commSupport(@RequestParam("req_id") Long id,
                                     @RequestParam("message") String message,
-                                    HttpSession session,
                                     RedirectAttributes attr) {
-        User user = (User) session.getAttribute("user");
+        User user = getCurrentUser();
         if (user == null)
             return new RedirectView("/error");
         boolean isAdmin = user.getRoles().stream()
@@ -189,9 +181,8 @@ public class ActionController {
 
     @RequestMapping(path = "/support/close", method = RequestMethod.POST)
     public RedirectView closeSupport(@RequestParam("req_id") Long id,
-                                    HttpSession session,
                                     RedirectAttributes attr) {
-        User user = (User) session.getAttribute("user");
+        User user = getCurrentUser();
         if (user == null)
             return new RedirectView("/error");
         boolean isAdmin = user.getRoles().stream()

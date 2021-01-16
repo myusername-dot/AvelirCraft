@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/upload")
-public class UploadController {
+public class UploadController extends BaseController {
 
     private File dir;
 
@@ -65,11 +65,11 @@ public class UploadController {
     }
 
     @RequestMapping(path = "/user/icon", method = RequestMethod.POST)
-    public String saveProfilePic(@RequestParam("image") MultipartFile image, HttpSession session) {
+    public String saveProfilePic(@RequestParam("image") MultipartFile image) {
         if (!image.isEmpty()) {
             if (!Objects.requireNonNull(image.getContentType()).startsWith("image"))
                 return "error";
-            User user = (User) session.getAttribute("user");
+            User user = getCurrentUser();
             Image img;
             try {
                 img = new Image(user.getId(), image.getContentType(), image.getBytes());
@@ -104,9 +104,8 @@ public class UploadController {
     public String createNews(@RequestParam(defaultValue = "") String header,
                              @RequestParam("description") String description,
                              @RequestParam("message") String message,
-                             @RequestParam("image") MultipartFile image,
-                             HttpSession session) {
-        User user = (User) session.getAttribute("user");
+                             @RequestParam("image") MultipartFile image) {
+        User user = getCurrentUser();
         boolean access = user != null && user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
@@ -146,9 +145,8 @@ public class UploadController {
     public String createGuide(@RequestParam(defaultValue = "") String header,
                               @RequestParam("description") String description,
                               @RequestParam("tags") Optional<String> tags,
-                              @RequestParam("link") String link,
-                              HttpSession session) {
-        User user = (User) session.getAttribute("user");
+                              @RequestParam("link") String link) {
+        User user = getCurrentUser();
         boolean access = user != null && user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));

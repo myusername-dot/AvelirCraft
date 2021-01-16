@@ -27,7 +27,7 @@ import java.util.stream.Stream;
 
 @Controller
 @RequestMapping(path = "/")
-public class HomeController {
+public class HomeController extends BaseController {
 
     @Autowired
     private UsersDataService usersDataService;
@@ -55,7 +55,7 @@ public class HomeController {
     }
 
     @RequestMapping(path = {"/news.html", "/news"})
-    public String newsPage(@RequestParam Integer id, Model model, HttpSession session) {
+    public String newsPage(@RequestParam Integer id, Model model) {
         boolean deleteAccess = false;
         User user = null;
         Optional<News> news = newsDataService.findById(id);
@@ -63,7 +63,7 @@ public class HomeController {
             news = Optional.of(new News());
         else {
             newsDataService.incrementViews(news.get());
-            user = (User) session.getAttribute("user");
+            user = getCurrentUser();
             deleteAccess = user != null && user.getRoles().stream()
                     .anyMatch(role -> role.getRole()
                             .matches("owner|fakeowner|admin|moder"));
@@ -76,8 +76,8 @@ public class HomeController {
     }
 
     @RequestMapping(path = {"/lk.html", "/lk"})
-    public String lkPage(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public String lkPage(Model model) {
+        User user = getCurrentUser();
         if (user == null)
             return "redirect:/login";
         List<Role> roles = user.getRoles();
@@ -104,8 +104,8 @@ public class HomeController {
     }
 
     @RequestMapping(path = {"/adminpanel.html", "/adminpanel"})
-    public String adminPage(Model model, HttpSession session) {
-        User user = (User) session.getAttribute("user");
+    public String adminPage(Model model) {
+        User user = getCurrentUser();
         boolean pageAccess = user != null && user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
@@ -121,7 +121,7 @@ public class HomeController {
     }
 
     @RequestMapping(path = {"/guid.html", "/guid"})
-    public String guidPage(@RequestParam Integer id, Model model, HttpSession session) {
+    public String guidPage(@RequestParam Integer id, Model model) {
         boolean deleteAccess = false;
         User user = null;
         Optional<Guide> guide = guidesDataService.findById(id);
@@ -129,7 +129,7 @@ public class HomeController {
             guide = Optional.of(new Guide());
         else {
             guidesDataService.incrementViews(guide.get());
-            user = (User) session.getAttribute("user");
+            user = getCurrentUser();
             deleteAccess = user != null && user.getRoles().stream()
                     .anyMatch(role -> role.getRole()
                             .matches("owner|fakeowner|admin|moder"));
@@ -157,8 +157,8 @@ public class HomeController {
     }
 
     @RequestMapping(path = {"/support.html", "/support"})
-    public String supportPage(HttpSession session, Model model) {
-        User user = (User) session.getAttribute("user");
+    public String supportPage(Model model) {
+        User user = getCurrentUser();
         if (user == null)
             return "redirect:/login";
         boolean isAdmin = user.getRoles().stream()
@@ -175,11 +175,11 @@ public class HomeController {
     }
 
     @RequestMapping(path = {"/openticket.html", "/openticket"})
-    public String openticketPage(@RequestParam Long id, HttpSession session, Model model) {
+    public String openticketPage(@RequestParam Long id, Model model) {
         Optional<SupportRequest> supportRequest = supportDataService.findById(id);
         if (supportRequest.isEmpty())
             return "error";
-        User user = (User) session.getAttribute("user");
+        User user = getCurrentUser();
         boolean isAccess = user != null && (supportRequest.get().getUserId().equals(user.getId()) ||
                 user.getRoles().stream()
                         .anyMatch(role -> role.getRole()
