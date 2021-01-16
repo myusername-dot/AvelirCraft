@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/stylelogin.css" th:href="@{css/stylelogin.css}">
+    <link rel="shortcut icon" href="img/icon/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Poppins:wght@100&family=Source+Sans+Pro:wght@200;400;600&family=Ubuntu:wght@500&display=swap"
+          rel="stylesheet">
+    <script src="js/scrypt.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>Админ панель</title>
+</head>
+<body>
+<div class="osnova">
+    <div class="upmenu">
+        <ul>
+            <li class="menu"><a class="menulink" href="index.html">Главная</a></li>
+            <li class="menu"><a class="menulink" href=#>Новости</a></li>
+            <li class="menu"><a class="menulink" href="donate.html">Донат</a></li>
+            <li class="menu"><a class="menulink" href="lk.html">Личный кабинет</a></li>
+            <li class="menu"><a class="menulink" href="support.html">Тех.поддержка</a></li>
+            <li class="menu"><a class="menulink" href="guidmenu.html">Помощь</a></li>
+        </ul>
+    </div>
+    <div class="glav">
+        <a href='#' id='trigger'>Открыть/скрыть информацию</a> <!-- Всё происходит при нажатии на ссылку -->
+        <div id='box' style='display: none;padding:10px;background-color:#f1f1f1;margin:10px;width:210px;'>Содержимое
+            скрытого блока
+        </div>
+
+
+    </div>
+</div>
+</body>
+</html>

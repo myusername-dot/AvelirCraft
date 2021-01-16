@@ -1,0 +1,93 @@
+create table news (
+    id integer primary key auto_increment,
+    header varchar(256) not null,
+    description varchar(512) not null,
+    message varchar(2048) not null,
+    date timestamp not null,
+    img_name varchar(64) default '',
+    `views` BIGINT NOT NULL DEFAULT '0'
+) engine InnoDB;
+
+create table images (
+    user_id MEDIUMINT(8) UNSIGNED primary key,
+    type varchar(64) not null,
+    img mediumblob not null
+);
+
+create table comments (
+    id integer primary key auto_increment,
+    message varchar(1024) not null,
+    date timestamp not null,
+    user_id mediumint unsigned not null,
+    news_id integer not null,
+    foreign key (user_id) references authme(id),
+    foreign key (news_id) references news(id)
+) engine InnoDB;
+
+CREATE TABLE `authme` (
+  `id` mediumint(8) UNSIGNED NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `realname` varchar(255) NOT NULL,
+  `password` varchar(255) CHARACTER SET ascii COLLATE ascii_bin NOT NULL,
+  `ip` varchar(40) CHARACTER SET ascii COLLATE ascii_bin DEFAULT NULL,
+  `lastlogin` bigint(20) DEFAULT NULL,
+  `x` double NOT NULL DEFAULT 0,
+  `y` double NOT NULL DEFAULT 0,
+  `z` double NOT NULL DEFAULT 0,
+  `world` varchar(255) NOT NULL DEFAULT 'world',
+  `regdate` bigint(20) NOT NULL DEFAULT 0,
+  `regip` varchar(40) CHARACTER SET ascii COLLATE ascii_bin DEFAULT NULL,
+  `yaw` float DEFAULT NULL,
+  `pitch` float DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `isLogged` smallint(6) NOT NULL DEFAULT 0,
+  `hasSession` smallint(6) NOT NULL DEFAULT 0,
+  `totp` varchar(32) DEFAULT NULL,
+  `profileicon` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ALTER TABLE `authme`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+ALTER TABLE `authme`
+  MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+CREATE TABLE `luckperms_players` (
+  `uuid` varchar(36) NOT NULL,
+  `username` varchar(16) NOT NULL,
+  `primary_group` varchar(36) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+ALTER TABLE `luckperms_players`
+  ADD PRIMARY KEY (`uuid`),
+  ADD KEY `luckperms_players_username` (`username`);
+
+create table guide (
+  id integer primary key auto_increment,
+  link varchar(256) not null,
+  header varchar(256) not null,
+  description varchar(4096) not null,
+  tags varchar(256) not null,
+  date timestamp not null,
+  `views` BIGINT NOT NULL DEFAULT '0'
+) engine InnoDB;
+
+create table support_requests (
+	id bigint primary key auto_increment,
+	user_id mediumint unsigned not null,
+	date timestamp not null,
+    topic varchar(350) not null,
+    status varchar(50) not null,
+    foreign key (user_id) references authme(id)
+) engine InnoDB;
+
+create table support_comments (
+	id bigint primary key auto_increment,
+	user_id mediumint unsigned not null,
+    request_id bigint not null,
+	date timestamp not null,
+    message varchar(1024) not null,
+    foreign key (user_id) references authme(id),
+    foreign key (request_id) references support_requests(id)
+) engine InnoDB;

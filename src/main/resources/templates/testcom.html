@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/styletest.css" th:href="@{css/stylenews.css}">
+    <link rel="shortcut icon" href="img/icon/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Poppins:wght@100&family=Source+Sans+Pro:wght@200;400;600&family=Ubuntu:wght@500&display=swap"
+          rel="stylesheet">
+    <script src="js/scrypt.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>Админ панель</title>
+</head>
+<body>
+<div class="delcom">
+	<ul id="reddel">
+		<li>
+			<button class="redderlbut">редактировать</button>
+		</li>
+		<li>
+			<form method="POST" action="/" th:attr="action=@{upload/news/comment/delete(news_id=*{id}, comment_id=${comment.id})}">
+				<button class="redderlbut" type="submit">удалить</button>
+			</form>
+		</li>
+	</ul>
+	<div class="poster">
+	<img src="img\icon\....png" style="pointer-events: none;width:10px;">
+		<div class="descr">
+		<button class="redderlbut">редактировать</button>
+			<form method="POST" action="/" th:attr="action=@{upload/news/comment/delete(news_id=*{id}, comment_id=${comment.id})}">
+				<button class="redderlbut" type="submit">удалить</button>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

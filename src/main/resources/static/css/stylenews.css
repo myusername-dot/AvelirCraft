@@ -1,0 +1,315 @@
+li{list-style-type: none;}
+.menu{
+	display: inline;
+	margin-right: 1%;
+	margin-left: 1%;
+	color: white;
+}
+.marup{
+	disbplay: block;
+}
+.admdelnews{
+	text-align: center;
+}
+.teglist{text-align: left;}
+.teggui{color: aqua;word-spacing: 15px;}
+.tickettag{color: limegreen;text-decoration: none;}
+.tickettag:hover{color: lime;}
+.status1{color: gray}
+.status2{color: red}
+.status3{color: lime}
+td{ padding: 9px 8px;border-bottom: 2px solid silver;}
+th{border-bottom: 2px dashed white;}
+.ticketlog{color: gold;text-decoration: none;}
+.ticketlist{border-collapse: collapse;width: 878px;}
+.ticket{height: 20px;color: white;}
+.ticket:hover{background: #494949;}
+.delkom{disbplay: none;}
+.delkom:hover{disbplay: block;}
+.ticklog{color: orangered;font-size: 20px;text-align: center;font-family: Ubuntu;}
+.ticklist{border: 2px solid silver;background: #181818;text-align: center;}
+.redderlbut{color: white;background: #282828;border: white solid 1px;border-radius: 5px;}
+.podrob2{float: right;background: none;width: 25px;height: 15px;margin-right: 20px;border: white solid 0px;}
+.podrob2:actve{background: none;width: 25px;height: 15px;margin-right: 20px;border: white solid 0px;}
+.delkom{position: absolute;margin-top: -40px;margin-left: 670px;background: lime;width: 10px;}
+.delnews{background: #282828;color: white;font-size: 20px;border: white solid 2px;border-radius: 3px;}
+.delnews:hover{background: #282828;color: orangered;font-size: 20px;border: orangered solid 2px;border-radius: 3px;}
+.delnews:active{background: #282828;color: red;font-size: 20px;border: red solid 2px;border-radius: 3px;}
+.upmenu{	
+	height: 80px;
+	width: 103.6%;
+	margin-left: -2%;
+	margin-right: 100px;
+    background: #191A1B;
+    margin-bottom: 10px;
+    padding-top: 30px;
+}
+.menulink{
+	font-family: 'Comfortaa';
+	color: white;
+	text-decoration:none;
+	font-size: 150%;
+	font-weight: 600;
+}
+.menulink:hover{
+	color: silver;
+	text-decoration: underline;
+}
+ul{
+	text-align: center;
+}
+.logoname{
+	display: block;
+	float: top;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-size: 50px;
+	color: white;
+	font-family: 'Ubuntu';
+}
+.glav{
+	text-align: top;
+	disbplay: block;
+	float: inherit;
+	margin-left: 40px;
+}
+.blockcenter{
+	width: 1280px;
+	display: block;
+	text-align: center;
+	margin-top: 30px;
+	top: left;
+	margin: 0 auto;
+}
+.poster{
+    position:relative;
+	width:20px;
+	float: right;
+}
+.descr{
+    display:none;
+    margin-left:-120px;
+    padding:10px;
+    margin-top:-110px;
+    background:#191919;
+    height:100px;
+    -moz-box-shadow:0 5px 5px rgba(0,0,0,0.3);
+    -webkit-box-shadow:0 5px 5px rgba(0,0,0,0.3);
+    box-shadow:0 5px 5px rgba(0,0,0,0.3);
+}
+.poster:hover .descr{
+    display:block;
+    position:absolute;
+	border: 2px solid white;
+	border-radius: 7px;
+    top:120px;
+    z-index:9999;
+    width:110px;
+	height:100%;
+}
+.rightblock{
+	height: 100%;
+    background-color: #1E2024;
+	padding-bottom: 10px;
+    width: 300px; /*Меняем на 20%*/
+    float: right;
+	margin-right: 60px;
+	border-radius: 10px;
+	margin-top: 0px;
+	margin-bottom: 10px;
+}
+.osnova{
+	height: 100%;
+	width: 98%; /*Меняем на 80%*/
+    padding: 10px;
+    margin: 0 auto;
+	margin-top: -25px;
+}
+.bottom{
+	display: block;
+	width:103.6%;
+	height: 100%;
+	margin-left: -2%;
+	background:#1E2024;
+	text-align: center;
+	color: gray;
+	font-size: 13px;
+	padding-bottom: 10px;
+	font-family: ubuntu;
+	float: left;
+}
+.namevigs{
+	color: white;
+	font-size: 30px;
+	padding-bottom: 5px;
+	border-bottom: solid 3px orangered;
+}
+.ratname{
+	color: white;
+	font-size: 20px;
+}
+.vk_groups{
+	width: 240px;
+}
+#vk_groups{margin: 0 auto; width: 240px;}
+body{
+	background-image:url("../img/bg.jpg");
+	background-color: #282828;
+	background-position:center 52px;
+	background-size:100% auto;
+	background-repeat:no-repeat;
+}
+.vig{
+	wight: 200px;
+	height: 100px;
+}
+.newsblock{
+	height: 100%;
+	display: block;
+    background-color: #2ff553;
+    margin-bottom: 10px;
+    width: 70%; /*Меняем на 20%*/
+    float: left;
+}
+.bottom-content{
+	border-top: 1px dotted silver;
+}
+.dat-sie{
+	color: silver;
+	margin-right: 20px;
+	margin-left: 5px;
+	font-size: 20px;
+}
+.podrob{
+	color: white;
+	font-size: 20px;
+	width: 150px;
+	text-align: center;
+	height: 28px;
+	float: right;
+	margin-right: 5px;
+	background: #18191C;
+	text-decoration: none;
+	border-radius: 3px;
+	border: white solid 2px;
+}
+.podrob:hover{
+	color: gray;
+	background: black;
+	border: gray solid 2px;
+}
+.lognews{
+	margin-top: -20px;
+	margin-left: -20px;
+}
+.textnews{color: silver;font-size: 20px;}
+.texnws{
+	height: 175px;color:red;
+}
+.tagnews{
+	color: white;
+	font-weight:400;
+	font-size: 30px;
+}
+.date{color: white;font-size: 20px;position: absolute;margin-top: 13px;margin-left: 5px;}
+.imgis{width: 30px;margin-left: 30px; margin-top: 10px;}
+.eyes{color: white;font-size: 20px;position: absolute;margin-top: 13px;margin-left: 5px;}
+.imgis2{width: 30px;margin-left: 650px;}
+.dateye{background: black;opacity: .7;height: 50px;width: 827px;position: absolute;margin-top:-72px;}
+.imagesis{pointer-events: none;width: 50px;height:50px;border-radius:50px;}
+.solcom{border: 2px solid white;height: 100%;width: 820px;border-radius: 10px;float: left;padding: 5px;margin-bottom: 10px;}
+.name{color:#666;font-size: 20px;font-weight:600;margin-top: 20px;margin-left: 10px;position: absolute;}
+.komment{color: white;font-size: 15px;float: left;}
+.subs{color: white;background: #282828;font-size: 20px;border: 2px solid silver;border-radius: 3px;}
+.subs:hover{color: orangered;background: #282828;font-size: 20px;border: 2px solid orangered;border-radius: 3px;}
+.subs:active{color: red;background: #282828;font-size: 20px;border: 2px solid orangered;border-radius: 3px;}
+.coms{color: white;font-size: 20px;}
+.test{resize: none;width:820px;height:75px;}
+.block-content{
+	font-family: 'Source Sans Pro', sans-serif;
+	height: 400px;
+    background-color: #1E2024;
+    width: 410px; /*Меняем на 20%*/
+	border-radius: 10px;
+	float: left;
+	padding: 20px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	text-align: left;
+	text-align: bottom;
+}
+.fullnews{
+	border-radius: 10px;
+	text-align: left;
+	height: 100%;
+	margin-top: -19px;
+	width: 880px;
+	display: block;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+    background-color: #1E2024;
+	color: white;
+	font-size: 15px;
+	font-family: 'Source Sans Pro', sans-serif;
+    margin-bottom: 10px;
+    float: left;
+}
+.link{
+	text-decoration: none;
+	color: gray;
+}
+.link2{
+	text-decoration: underline;
+	color: gray;
+}
+.link2:hover{
+	color: orangered;
+}
+.newstag{
+	text-align: center;
+	color: white;
+	font-size: 30px;
+	font-weight: 600;
+}
+.footer{
+    height: 80px;
+    background: #41874e;
+    margin-bottom: 10px;
+}
+.createsupport{display:none;}
+.creattick{
+	color: white;
+	font-size: 20px;
+	width: 150px;
+	text-align: center;
+	margin-left: 335px;
+	height: 28px;
+	margin-right: 5px;
+	background: #18191C;
+	text-decoration: none;
+	border-radius: 3px;
+	border: white solid 2px;
+}
+.creattick:hover{
+	color: gray;
+	background: black;
+	border: gray solid 2px;
+}
+.podrob3{
+	color: white;
+	font-size: 20px;
+	width: 150px;
+	text-align: center;
+	height: 28px;
+	background: #18191C;
+	text-decoration: none;
+	border-radius: 3px;
+	border: white solid 2px;
+}
+.podrob3:hover{
+	color: orangered;
+	background: black;
+	border: orangered solid 2px;
