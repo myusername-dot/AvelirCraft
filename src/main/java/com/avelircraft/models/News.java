@@ -50,7 +50,7 @@ public class News {
         message = "";
         description = "";
         id = 0;
-        views = 0l;
+        //views = 0l;
         //date =  new Date();
     };
 
@@ -133,4 +133,11 @@ public class News {
                 '}';
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setViews(Long views) {
+        this.views = views;
+    }
 }

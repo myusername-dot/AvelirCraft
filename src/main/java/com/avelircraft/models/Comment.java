@@ -81,4 +81,12 @@ public class Comment {
     public void setNews(News news) {
         this.news = news;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

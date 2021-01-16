@@ -89,4 +89,24 @@ public class SupportRequest implements Comparable<SupportRequest> {
         }
         return a.date.compareTo(b.date);
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public void setSupportComments(List<SupportComment> supportComments) {
+        this.supportComments = supportComments;
+    }
 }

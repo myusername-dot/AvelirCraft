@@ -38,4 +38,12 @@ public abstract class StatsAbstract<T> implements Serializable {
     public int hashCode() {
         return Objects.hash(uuid, last);
     }
+
+    public void setUuid(T uuid) {
+        this.uuid = uuid;
+    }
+
+    public void setLast(String last) {
+        this.last = last;
+    }
 }

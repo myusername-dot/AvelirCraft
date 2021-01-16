@@ -40,4 +40,8 @@ public class PlayTime extends StatsAbstract<UUID> implements Serializable {
                 "amount=" + amount +
                 '}';
     }
+
+    public void setAmount(Double amount) {
+        this.amount = amount;
+    }
 }

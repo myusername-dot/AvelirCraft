@@ -46,4 +46,8 @@ public class Role extends UUIDAbstract implements Serializable {
 
     @Transactional
     public MMOCore getMmoCore() { return mmoCore; }
+
+    public void setMmoCore(MMOCore mmoCore) {
+        this.mmoCore = mmoCore;
+    }
 }

@@ -101,4 +101,12 @@ public class Guide {
     public void setViews(Long views) {
         this.views = views;
     }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

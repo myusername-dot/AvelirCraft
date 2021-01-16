@@ -43,4 +43,12 @@ public class MMOCore extends StatsAbstract<Role> implements Serializable {
     public int hashCode() {
         return Objects.hash(super.hashCode(), clas, lvl);
     }
+
+    public void setClas(String clas) {
+        this.clas = clas;
+    }
+
+    public void setLvl(Integer lvl) {
+        this.lvl = lvl;
+    }
 }

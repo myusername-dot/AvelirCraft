@@ -72,4 +72,32 @@ public class SupportComment {
     public boolean getAdminIcon() {
         return adminIcon;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setRequest(SupportRequest request) {
+        this.request = request;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public boolean isAdminIcon() {
+        return adminIcon;
+    }
+
+    public void setAdminIcon(boolean adminIcon) {
+        this.adminIcon = adminIcon;
+    }
 }
