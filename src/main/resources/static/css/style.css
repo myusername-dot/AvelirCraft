@@ -39,6 +39,10 @@
 	color: silver;
 	text-decoration: underline;
 }
+.menulink:hover{
+	color: silver;
+	text-decoration: underline;
+}
 ul{
 	text-align: center;
 }

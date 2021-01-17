@@ -63,7 +63,7 @@ public class HomeController extends BaseController {
             news = Optional.of(new News());
         else {
             newsDataService.incrementViews(news.get());
-            user = getCurrentUser();
+            user = getCurrentUser().orElse(null);
             deleteAccess = user != null && user.getRoles().stream()
                     .anyMatch(role -> role.getRole()
                             .matches("owner|fakeowner|admin|moder"));
@@ -77,9 +77,7 @@ public class HomeController extends BaseController {
 
     @RequestMapping(path = {"/lk.html", "/lk"})
     public String lkPage(Model model) {
-        User user = getCurrentUser();
-        if (user == null)
-            return "redirect:/login";
+        User user = getCurrentUser().get();
         List<Role> roles = user.getRoles();
         boolean panelAccess = roles.stream()
                 .anyMatch(role -> role.getRole()
@@ -105,8 +103,8 @@ public class HomeController extends BaseController {
 
     @RequestMapping(path = {"/adminpanel.html", "/adminpanel"})
     public String adminPage(Model model) {
-        User user = getCurrentUser();
-        boolean pageAccess = user != null && user.getRoles().stream()
+        User user = getCurrentUser().get();
+        boolean pageAccess = user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
         if (pageAccess)
@@ -123,18 +121,17 @@ public class HomeController extends BaseController {
     @RequestMapping(path = {"/guid.html", "/guid"})
     public String guidPage(@RequestParam Integer id, Model model) {
         boolean deleteAccess = false;
-        User user = null;
+        Optional<User> user;
         Optional<Guide> guide = guidesDataService.findById(id);
         if (guide.isEmpty())
             guide = Optional.of(new Guide());
         else {
             guidesDataService.incrementViews(guide.get());
             user = getCurrentUser();
-            deleteAccess = user != null && user.getRoles().stream()
+            deleteAccess = user.isPresent() && user.get().getRoles().stream()
                     .anyMatch(role -> role.getRole()
                             .matches("owner|fakeowner|admin|moder"));
         }
-        //model.addAttribute("user", user);
         model.addAttribute("guid", guide.get());
         model.addAttribute("delete_access", deleteAccess);
         return "guid";
@@ -158,9 +155,7 @@ public class HomeController extends BaseController {
 
     @RequestMapping(path = {"/support.html", "/support"})
     public String supportPage(Model model) {
-        User user = getCurrentUser();
-        if (user == null)
-            return "redirect:/login";
+        User user = getCurrentUser().get();
         boolean isAdmin = user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
@@ -179,11 +174,11 @@ public class HomeController extends BaseController {
         Optional<SupportRequest> supportRequest = supportDataService.findById(id);
         if (supportRequest.isEmpty())
             return "error";
-        User user = getCurrentUser();
-        boolean isAccess = user != null && (supportRequest.get().getUserId().equals(user.getId()) ||
+        User user = getCurrentUser().get();
+        boolean isAccess = supportRequest.get().getUserId().equals(user.getId()) ||
                 user.getRoles().stream()
                         .anyMatch(role -> role.getRole()
-                                .matches("owner|fakeowner|admin|moder")));
+                                .matches("owner|fakeowner|admin|moder"));
         if (!isAccess)
             return "error";
         boolean isAdmin = !supportRequest.get().getUserId().equals(user.getId());

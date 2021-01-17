@@ -1,26 +1,77 @@
-.poster{
-    position:relative;
-    margin-left: 1000px;
-    background:#282828;
-    height:20px;
-    width:20px;
+.menu{
+	display: inline;
+	margin-right: 1%;
+	margin-left: 1%;
+	color: white;
 }
-.descr{
-    display:none;
-    margin-left:-350px;
-    padding:10px;
-    margin-top:17px;
-    background:#282828;
-    height:200px;
-    -moz-box-shadow:0 5px 5px rgba(0,0,0,0.3);
-    -webkit-box-shadow:0 5px 5px rgba(0,0,0,0.3);
-    box-shadow:0 5px 5px rgba(0,0,0,0.3);
+.marup{
+	disbplay: block;
 }
-.poster:hover .descr{
-    display:block;
-    position:absolute;
-    top:120px;
-    z-index:9999;
-    width:200px;
-	height:50px;
+
+.upmenu{	
+	height: 80px;
+	max-width: 107%;
+	width: 103.6%;
+	margin-left: -2%;
+	margin-right: 100px;
+    background: #191A1B;
+    margin-bottom: 10px;
+    padding-top: 30px;
 }
+.poisk input{border-radius: 5px;font-size: 20px;border: 2px solid orangered;width: 500px;background: #282828;color: orangered;}
+.poisk button {
+	background: #282828;
+	margin-left: 5px;
+	width: 30px;
+	height: 30px;
+	border: 2px solid orangered;
+	border-radius: 50px;
+	color: red;
+}
+.menulink{
+	font-family: 'Comfortaa';
+	color: white;
+	text-decoration:none;
+	font-size: 150%;
+	font-weight: 600;
+}
+.menulink:hover{
+	color: silver;
+	text-decoration: underline;
+}
+.menulink:hover{
+	color: silver;
+	text-decoration: underline;
+}
+ul{
+	text-align: center;
+}
+.logoname{
+	display: block;
+	float: top;
+	text-align: center;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	font-size: 50px;
+	color: white;
+	font-family: 'Ubuntu';
+}
+.glav{
+	text-align: top;
+	disbplay: block;
+	float: inherit;
+	margin-left: 40px;
+}
+.blockcenter{
+	width: 1280px;
+	min-height: 1045px;
+	display: block;
+	text-align: center;
+	margin-top: 30px;
+	top: left;
+	margin: 0 auto;
+}
+.punkt{background: orangered;font-size:15px;padding-top: 3px;padding-bottom: 3px;padding-left: 7px; padding-right: 7px;}
+.punkt2{float:left;background: orangered;font-size:15px;padding-top: 4px;padding-bottom: 4px;padding-left: 4px; padding-right: 4px;}
+td{border: 1px solid black;}
+table{width: 1000px;}

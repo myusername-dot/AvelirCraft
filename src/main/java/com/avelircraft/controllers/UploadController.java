@@ -69,7 +69,7 @@ public class UploadController extends BaseController {
         if (!image.isEmpty()) {
             if (!Objects.requireNonNull(image.getContentType()).startsWith("image"))
                 return "error";
-            User user = getCurrentUser();
+            User user = getCurrentUser().get();
             Image img;
             try {
                 img = new Image(user.getId(), image.getContentType(), image.getBytes());
@@ -105,8 +105,8 @@ public class UploadController extends BaseController {
                              @RequestParam("description") String description,
                              @RequestParam("message") String message,
                              @RequestParam("image") MultipartFile image) {
-        User user = getCurrentUser();
-        boolean access = user != null && user.getRoles().stream()
+        User user = getCurrentUser().get();
+        boolean access = user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
         if (!access)
@@ -146,8 +146,8 @@ public class UploadController extends BaseController {
                               @RequestParam("description") String description,
                               @RequestParam("tags") Optional<String> tags,
                               @RequestParam("link") String link) {
-        User user = getCurrentUser();
-        boolean access = user != null && user.getRoles().stream()
+        User user = getCurrentUser().get();
+        boolean access = user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
         if (!access)

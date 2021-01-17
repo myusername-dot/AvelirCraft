@@ -6,12 +6,14 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import java.util.Optional;
+
 public abstract class BaseController {
 
-    protected User getCurrentUser() {
+    protected Optional<User> getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication instanceof AnonymousAuthenticationToken) return null;
+        if (authentication instanceof AnonymousAuthenticationToken) return Optional.ofNullable(null);
         MyUserPrincipal user = (MyUserPrincipal) authentication.getPrincipal();
-        return user.getUser();
+        return Optional.of(user.getUser());
     }
 }

@@ -2,10 +2,9 @@
 <html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="css/stylelogin.css" th:href="@{css/stylelogin.css}">
+    <link rel="stylesheet" type="text/css" href="css/styletest.css" th:href="@{css/styletest.css}">
     <link rel="shortcut icon" href="img/icon/favicon.png" type="image/png">
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Poppins:wght@100&family=Source+Sans+Pro:wght@200;400;600&family=Ubuntu:wght@500&display=swap"
-          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Poppins:wght@100&family=Source+Sans+Pro:wght@200;400;600&family=Ubuntu:wght@500&display=swap"rel="stylesheet">
     <script src="js/scrypt.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
     <title>Админ панель</title>
@@ -23,11 +22,92 @@
         </ul>
     </div>
     <div class="glav">
-        <a href='#' id='trigger'>Открыть/скрыть информацию</a> <!-- Всё происходит при нажатии на ссылку -->
-        <div id='box' style='display: none;padding:10px;background-color:#f1f1f1;margin:10px;width:210px;'>Содержимое
-            скрытого блока
-        </div>
-
+      
+		<table>
+			<tbody>
+				<tr>
+				 <td><a class="punkt">1</a></td>
+				 <td><a class="polstext">Регистрация на сайте проекта является абсолютно добровольной.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">2</a></td>
+				 <td><a class="polstext">Данные правила обязательны к исполнению на всех ресурсах проекта и всеми участниками, вне зависимости от обстоятельств и статусов.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">3</a></td>
+				 <td><a class="polstext">Незнание правил не освобождает вас от ответственности.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">4</a></td>
+				 <td><a class="polstext">Администрация проекта вправе удалить аккаунт игрока,предварительно оповестив его.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">5</a></td>
+				 <td><a class="polstext">При удалении аккаунта,игрок теряет абсолютно всё(статистику,дома,привилегии,RPG прокачку и тд)</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">6</a></td>
+				 <td><a class="polstext">Администрация вправе изменить правила проекта без оповещения.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">7</a></td>
+				 <td><a class="polstext">Администрация не несёт ответственности за чрезмерную токсичность игроков,но постарается сделать всё,для устранения таких игроков.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">8</a></td>
+				 <td><a class="polstext">Администрация вправе управлять аккаунтами игроков без каких либо притензий со стороны игроков.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">9</a></td>
+				 <td><a class="polstext">При нахождении ошибок,вы обязаны сообщить о ним администрации сервера.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt2">10</a></td>
+				 <td><a class="polstext">Администрация сервера обязана в 90% случаев выдать награду за нахождение ошибок игроку.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt2">11</a></td>
+				 <td><a class="polstext">Администрация обязана наказывать всех игроков соответсвенно правилам проекта.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt2">12</a></td>
+				 <td><a class="polstext">Играя на сервере, вы тем самым соглашаетесь со всеми правилами, перечисленными ниже. Если вы не согласны с ними, то вам следует покинуть наш проект.</a></td>
+				</tr>
+			</tbody>
+		</table>
+		<table>
+			<tbody>
+				<tr>
+				 <td><a class="punkt">1</a></td>
+				 <td><a class="polstext">Регистрация на сайте проекта является абсолютно добровольной.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">2</a></td>
+				 <td><a class="polstext">На проекте выдаются наказания в виде бана,кика,тюрьмы,мута и удаление аккаунта.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">3</a></td>
+				 <td><a class="polstext">За попрошайничество,использование низшей ступени читов и доставание администрации вам выдаётся кик с сервера.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">4</a></td>
+				 <td><a class="polstext">За гриферство,использование читов средней ступени,оскарбление игроков,оскарбление администрации(в тяжёлой степени) вы будете посажены в тюрьму на срок от 1 часа до 31 дня.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">5</a></td>
+				 <td><a class="polstext">За злоупотребление матерных фраз,оскарбление игроков(если те подадут на вас жалобу),оскарбление администрации,попрошайничество,рекламу и домагательство вы получите мут на срок от 5 минут до 7 дней.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">6</a></td>
+				 <td><a class="polstext">За взлом сервера/проекта,краш сервера,неадекватное поведение,неоднократные нарушения и препятсвию нормальной игре другим людям вы получите бан от 7 дней до пожизненного срока.</a></td>
+				</tr>
+				<tr>
+				 <td><a class="punkt">7</a></td>
+				 <td><a class="polstext">За накрутку баланса/RPG уровней/блоков и нелегальную продажу предметов администрация в праве полностью удалить ваш аккаунт без оповещения.</a></td>
+				</tr>
+			</tbody>
+		</table>
+		
 
     </div>
 </div>

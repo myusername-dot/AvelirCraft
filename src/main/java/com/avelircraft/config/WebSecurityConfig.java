@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/guid*", "/guid.html*",
                         "/donate", "/donate.html",
                         "/news*", "/news.html*",
-                        "/image*", "/user/icon*")
+                        "/upload/image*", "/upload/user/icon*")
                 .permitAll()
                 .antMatchers("/error", "/error.html",
                         "/404", "404.html")

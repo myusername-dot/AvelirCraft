@@ -264,12 +264,13 @@ body{
     float: left;
 }
 .textsogl{word-break:inherit;disbplay: block;margin-left: 10px;color: gray;}
-.punkt{background: orangered;font-size: 15px;padding-top: 5px;padding-bottom: 5px;padding-left: 7px;padding-right: 8px;}
-.hi{
+.punkt{background: orangered;font-size:15px;padding-top: 3px;padding-bottom: 3px;padding-left: 7px; padding-right: 7px;}
+.punkt2{float:left;background: orangered;font-size:15px;padding-top: 4px;padding-bottom: 4px;padding-left: 4px; padding-right: 4px;}.hi{
 	text-align: center;
 	color: Silver;
 	font-size: 25px;
 }
+.trheig{height: 40px;}
 .subs{color: white;background: #282828;font-size: 20px;border: 2px solid silver;border-radius: 3px;}
 .subs:hover{color: orangered;background: #282828;font-size: 20px;border: 2px solid orangered;border-radius: 3px;}
 .subs:active{color: red;background: #282828;font-size: 20px;border: 2px solid orangered;border-radius: 3px;}

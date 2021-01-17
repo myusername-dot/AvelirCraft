@@ -46,9 +46,7 @@ public class ActionController extends BaseController {
                                     RedirectAttributes attr) {
         if (nId == 0)
             return new RedirectView("/");
-        User user = getCurrentUser();
-        if (user == null)
-            return new RedirectView("/error");
+        User user = getCurrentUser().get();
         Optional<News> news = newsDataService.findById(nId);
         if (news.isEmpty())
             return new RedirectView("/error");
@@ -63,8 +61,8 @@ public class ActionController extends BaseController {
 
     @RequestMapping(path = "/news/delete", method = RequestMethod.POST)
     public String deleteNews(@RequestParam("news_id") Integer nId) {
-        User user = getCurrentUser();
-        boolean deleteAccess = user != null && user.getRoles().stream()
+        User user = getCurrentUser().get();
+        boolean deleteAccess = user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
         if (!deleteAccess)
@@ -75,8 +73,8 @@ public class ActionController extends BaseController {
 
     @RequestMapping(path = "/guide/delete", method = RequestMethod.POST)
     public String deleteGuide(@RequestParam("guide_id") Integer gId) {
-        User user = getCurrentUser();
-        boolean deleteAccess = user != null && user.getRoles().stream()
+        User user = getCurrentUser().get();
+        boolean deleteAccess = user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
         if (!deleteAccess)
@@ -89,9 +87,7 @@ public class ActionController extends BaseController {
     public RedirectView deleteComment(@RequestParam("news_id") Integer nId,
                                       @RequestParam("comment_id") Long cId,
                                       RedirectAttributes attr) {
-        User user = getCurrentUser();
-        if (user == null)
-            return new RedirectView("/error");
+        User user = getCurrentUser().get();
         Optional<Comment> com = commentsDataService.findById(cId);
         boolean deleteAccess = com.isPresent() && user.getId().equals(com.get().getUser().getId()) || user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
@@ -106,8 +102,8 @@ public class ActionController extends BaseController {
     @RequestMapping(path = "/admin/privilege", method = RequestMethod.POST)
     public String grantPrivilege(@RequestParam("name") String username,
                                  @RequestParam("priveleg") String privilege) {
-        User user = getCurrentUser();
-        boolean access = user != null && user.getRoles().stream()
+        User user = getCurrentUser().get();
+        boolean access = user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
         if (!access)
@@ -129,8 +125,8 @@ public class ActionController extends BaseController {
 
     @RequestMapping(path = "/admin/delete_user", method = RequestMethod.POST)
     public String deleteUser(@RequestParam("name") String username) {
-        User user = getCurrentUser();
-        boolean access = user != null && user.getRoles().stream()
+        User user = getCurrentUser().get();
+        boolean access = user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("admin"));
         if (!access)
@@ -146,9 +142,7 @@ public class ActionController extends BaseController {
     public RedirectView support(@RequestParam("tagsupport") String topic,
                                 @RequestParam("descsupport") String message,
                                 RedirectAttributes attr) {
-        User user = getCurrentUser();
-        if (user == null)
-            return new RedirectView("/error");
+        User user = getCurrentUser().get();
         SupportRequest supportRequest = new SupportRequest(user.getId(), topic);
         SupportComment supportComment = new SupportComment(user, supportRequest, message);
         supportRequest.addSupportComment(supportComment);
@@ -161,9 +155,7 @@ public class ActionController extends BaseController {
     public RedirectView commSupport(@RequestParam("req_id") Long id,
                                     @RequestParam("message") String message,
                                     RedirectAttributes attr) {
-        User user = getCurrentUser();
-        if (user == null)
-            return new RedirectView("/error");
+        User user = getCurrentUser().get();
         boolean isAdmin = user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
@@ -182,9 +174,7 @@ public class ActionController extends BaseController {
     @RequestMapping(path = "/support/close", method = RequestMethod.POST)
     public RedirectView closeSupport(@RequestParam("req_id") Long id,
                                     RedirectAttributes attr) {
-        User user = getCurrentUser();
-        if (user == null)
-            return new RedirectView("/error");
+        User user = getCurrentUser().get();
         boolean isAdmin = user.getRoles().stream()
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
