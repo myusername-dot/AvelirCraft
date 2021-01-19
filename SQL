@@ -14,16 +14,6 @@ create table images (
     img mediumblob not null
 );
 
-create table comments (
-    id integer primary key auto_increment,
-    message varchar(1024) not null,
-    date timestamp not null,
-    user_id mediumint unsigned not null,
-    news_id integer not null,
-    foreign key (user_id) references authme(id),
-    foreign key (news_id) references news(id)
-) engine InnoDB;
-
 CREATE TABLE `authme` (
   `id` mediumint(8) UNSIGNED NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -52,6 +42,16 @@ ALTER TABLE `authme`
 
 ALTER TABLE `authme`
   MODIFY `id` mediumint(8) UNSIGNED NOT NULL AUTO_INCREMENT;
+  
+create table comments (
+    id integer primary key auto_increment,
+    message varchar(1024) not null,
+    date timestamp not null,
+    user_id mediumint unsigned not null,
+    news_id integer not null,
+    foreign key (user_id) references authme(id),
+    foreign key (news_id) references news(id)
+) engine InnoDB;
 
 CREATE TABLE `luckperms_players` (
   `uuid` varchar(36) NOT NULL,
@@ -74,22 +74,22 @@ create table guide (
 ) engine InnoDB;
 
 create table support_requests (
-	id bigint primary key auto_increment,
-	user_id mediumint unsigned not null,
-	date timestamp not null,
-    topic varchar(350) not null,
-    status varchar(50) not null,
-    foreign key (user_id) references authme(id)
+  id bigint primary key auto_increment,
+  user_id mediumint unsigned not null,
+  date timestamp not null,
+  topic varchar(350) not null,
+  status varchar(50) not null,
+  foreign key (user_id) references authme(id)
 ) engine InnoDB;
 
 create table support_comments (
-	id bigint primary key auto_increment,
-	user_id mediumint unsigned not null,
-    request_id bigint not null,
-	date timestamp not null,
-    message varchar(1024) not null,
-    foreign key (user_id) references authme(id),
-    foreign key (request_id) references support_requests(id)
+  id bigint primary key auto_increment,
+  user_id mediumint unsigned not null,
+  request_id bigint not null,
+  date timestamp not null,
+  message varchar(1024) not null,
+  foreign key (user_id) references authme(id),
+  foreign key (request_id) references support_requests(id)
 ) engine InnoDB;
 
 CREATE TABLE `stats_players` (
