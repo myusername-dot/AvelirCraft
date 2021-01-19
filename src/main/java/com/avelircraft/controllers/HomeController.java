@@ -3,23 +3,16 @@ package com.avelircraft.controllers;
 import com.avelircraft.models.*;
 import com.avelircraft.models.stats.MMOCore;
 import com.avelircraft.models.stats.PlayTime;
-import com.avelircraft.models.stats.UUID;
+import com.avelircraft.models.stats.MyUUID;
 import com.avelircraft.services.GuidesDataService;
 import com.avelircraft.services.NewsDataService;
 import com.avelircraft.services.SupportRequestsDataService;
 import com.avelircraft.services.UsersDataService;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityManager;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -84,7 +77,7 @@ public class HomeController extends BaseController {
                         .matches("owner|fakeowner|admin|moder"));
         user = usersDataService.update(user);
         PlayTime playTime = null;
-        for (UUID uuid : user.getUuid()) {
+        for (MyUUID uuid : user.getUuid()) {
             playTime = uuid.getPlayTime();
             if (playTime != null) break;
         }
@@ -94,7 +87,7 @@ public class HomeController extends BaseController {
             if (mmoCore != null) break;
         }
         model.addAttribute("panel_access", panelAccess);
-        model.addAttribute("play_time", playTime);
+        model.addAttribute("play_time", playTime == null ? null : playTime.getAmount());
         model.addAttribute("lvl", mmoCore == null ? null : mmoCore.getLvl());
         model.addAttribute("class", mmoCore == null ? null : mmoCore.getClas());
         model.addAttribute("user", user);

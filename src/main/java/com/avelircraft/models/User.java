@@ -1,6 +1,6 @@
 package com.avelircraft.models;
 
-import com.avelircraft.models.stats.UUID;
+import com.avelircraft.models.stats.MyUUID;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
@@ -39,7 +39,7 @@ public class User implements Serializable {
     private List<Role> roles;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<UUID> uuid;
+    private List<MyUUID> uuid;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Comment> comments;
@@ -183,11 +183,11 @@ public class User implements Serializable {
     }
 
     @Transactional
-    public List<UUID> getUuid() {
+    public List<MyUUID> getUuid() {
         return uuid;
     }
 
-    public void setUuid(List<UUID> uuid) {
+    public void setUuid(List<MyUUID> uuid) {
         this.uuid = uuid;
     }
 

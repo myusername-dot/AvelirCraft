@@ -116,8 +116,7 @@ public class ActionController extends BaseController {
                         .matches(privilege));
         if (has)
             return "error";
-        String uuid = username + " " + privilege + " " + System.currentTimeMillis();
-        Role role = new Role(uuid, grantUser.get(), privilege);
+        Role role = new Role(grantUser.get(), privilege);
         grantUser.get().setRole(role);
         usersDataService.update(grantUser.get());
         return "redirect:/adminpanel";

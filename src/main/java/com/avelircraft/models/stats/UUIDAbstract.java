@@ -4,30 +4,31 @@ import com.avelircraft.models.User;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.UUID;
 
 @MappedSuperclass
-public abstract class UUIDAbstract implements Serializable {
+public abstract class UUIDAbstract<T> implements Serializable {
 
     @Id
     @Column(name = "uuid")
-    private String uuid;
+    protected T uuid;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "username", referencedColumnName="username")
-    private User user;
+    protected User user;
 
     public UUIDAbstract(){}
 
-    public UUIDAbstract(String uuid, User user) {
+    public UUIDAbstract(T uuid, User user) {
         this.uuid = uuid;
         this.user = user;
     }
 
-    public String getUuid() {
+    public T  getUuid() {
         return uuid;
     }
 
-    public void setUuid(String uuid) {
+    public void setUuid(T  uuid) {
         this.uuid = uuid;
     }
 

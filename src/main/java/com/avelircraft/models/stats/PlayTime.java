@@ -8,15 +8,15 @@ import java.util.Objects;
 @Table(name = "stats_playtime")
 @AttributeOverride(name = "last", column = @Column(name = "last_updated"))
 @AssociationOverride(name = "uuid", joinColumns= @JoinColumn(name = "player", referencedColumnName="uuid"))
-public class PlayTime extends StatsAbstract<UUID> implements Serializable {
+public class PlayTime extends StatsAbstract<MyUUID> implements Serializable {
 
     @Column(name = "amount")
-    private Double amount;
+    private Integer amount;
 
     public PlayTime() {
     }
 
-    public Double getAmount() {
+    public Integer getAmount() {
         return amount;
     }
 
@@ -41,7 +41,19 @@ public class PlayTime extends StatsAbstract<UUID> implements Serializable {
                 '}';
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(Integer amount) {
         this.amount = amount;
     }
+
+//    @Type(type="uuid-char")
+//    @Override
+//    public UUID getUuid() {
+//        return uuid;
+//    }
+//
+//    @Type(type="uuid-char")
+//    @Override
+//    public void setUuid(UUID uuid) {
+//        this.uuid = uuid;
+//    }
 }

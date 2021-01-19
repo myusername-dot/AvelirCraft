@@ -1,0 +1,9 @@
+delete from mmocore_playerdata;
+delete from stats_playtime;
+delete from stats_players;
+delete from luckperms_players;
+delete from images;
+delete from comments;
+delete from news;
+delete from guide;
+delete from authme;

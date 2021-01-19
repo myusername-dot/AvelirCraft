@@ -5,12 +5,14 @@ import com.avelircraft.models.stats.PlayTime;
 import com.avelircraft.models.stats.UUIDAbstract;
 
 import javax.persistence.*;
+
 import org.springframework.transaction.annotation.Transactional;
 import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
 @Table(name = "luckperms_players")
-public class Role extends UUIDAbstract implements Serializable {
+public class Role extends UUIDAbstract<String> implements Serializable {
 
     @Column(name = "primary_group")
     private String role;
@@ -26,8 +28,8 @@ public class Role extends UUIDAbstract implements Serializable {
         role = "default";
     }
 
-    public Role(String uuid, User user, String role) {
-        super( System.currentTimeMillis() + "default", user);
+    public Role(User user, String role) {
+        super(user.getUsername() + "-" + System.currentTimeMillis(), user);
         this.role = role;
     }
 

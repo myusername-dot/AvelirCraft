@@ -53,7 +53,7 @@ public class UploadController extends BaseController {
             img.setImg(new FileInputStream(foundFile).readAllBytes());
         } catch (Exception e) {
             e.printStackTrace();
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         }
         String[] info = imgInfo.split("\\.");
         img.setType("image/" + info[1]);
@@ -91,7 +91,7 @@ public class UploadController extends BaseController {
             img = imagesDataService.findByUserId(Integer.parseInt(id)).get();
         } catch (NoSuchElementException e) {
             e.printStackTrace();
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.notFound().build();
         }
 
         return ResponseEntity.ok()

@@ -10,10 +10,10 @@ public abstract class StatsAbstract<T> implements Serializable {
     @Id
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uuid", referencedColumnName="uuid")
-    private T uuid;
+    protected T uuid;
 
     @Column(name="last")
-    private String last;
+    protected String last;
 
     public StatsAbstract(){}
 
