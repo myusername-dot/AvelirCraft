@@ -8,7 +8,7 @@ import java.util.Objects;
 public abstract class StatsAbstract<T> implements Serializable {
 
     @Id
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uuid", referencedColumnName="uuid")
     protected T uuid;
 

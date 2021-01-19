@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -76,10 +77,15 @@ public class HomeController extends BaseController {
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
         user = usersDataService.update(user);
-        PlayTime playTime = null;
+        // Надо исправть PlayTime, добавив составной ключ
+        long generalPlayTime = 0;
         for (MyUUID uuid : user.getUuid()) {
-            playTime = uuid.getPlayTime();
-            if (playTime != null) break;
+            List<PlayTime> playTimes = uuid.getPlayTime();
+            if (!playTimes.isEmpty()) {
+                //playTimes.forEach(p -> System.out.println(p.getAmount()));
+                generalPlayTime = playTimes.stream().mapToInt(PlayTime::getAmount).sum();
+                break;
+            }
         }
         MMOCore mmoCore = null;
         for (Role role : roles) {
@@ -87,7 +93,7 @@ public class HomeController extends BaseController {
             if (mmoCore != null) break;
         }
         model.addAttribute("panel_access", panelAccess);
-        model.addAttribute("play_time", playTime == null ? null : playTime.getAmount());
+        model.addAttribute("play_time", generalPlayTime);
         model.addAttribute("lvl", mmoCore == null ? null : mmoCore.getLvl());
         model.addAttribute("class", mmoCore == null ? null : mmoCore.getClas());
         model.addAttribute("user", user);
