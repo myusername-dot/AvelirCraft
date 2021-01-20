@@ -7,18 +7,17 @@ import java.util.Objects;
 @MappedSuperclass
 public abstract class StatsAbstract<T> implements Serializable {
 
-    @Id
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uuid", referencedColumnName="uuid")
-    protected T uuid;
+    @JoinColumn(name = "uuid", referencedColumnName="uuid", updatable = false, insertable = false)
+    protected T uuidRef;
 
     @Column(name="last")
     protected String last;
 
     public StatsAbstract(){}
 
-    public T getUuid() {
-        return uuid;
+    public T getUuidRef() {
+        return uuidRef;
     }
 
     public String getLast() {
@@ -30,17 +29,17 @@ public abstract class StatsAbstract<T> implements Serializable {
         if (this == o) return true;
         if (!(o instanceof StatsAbstract)) return false;
         StatsAbstract<?> that = (StatsAbstract<?>) o;
-        return uuid.equals(that.uuid) &&
+        return uuidRef.equals(that.uuidRef) &&
                 last.equals(that.last);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(uuid, last);
+        return Objects.hash(uuidRef, last);
     }
 
-    public void setUuid(T uuid) {
-        this.uuid = uuid;
+    public void setUuidRef(T uuidRef) {
+        this.uuidRef = uuidRef;
     }
 
     public void setLast(String last) {

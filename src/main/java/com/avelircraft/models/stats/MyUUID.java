@@ -13,7 +13,7 @@ import java.util.UUID;
 @AssociationOverride(name = "user", joinColumns= @JoinColumn(name = "username", referencedColumnName="realname"))
 public class MyUUID extends UUIDAbstract<UUID> implements Serializable {
 
-    @OneToMany(mappedBy = "uuid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "uuidRef", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<PlayTime> playTime;
 
     @Transactional

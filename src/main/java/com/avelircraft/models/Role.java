@@ -17,7 +17,7 @@ public class Role extends UUIDAbstract<String> implements Serializable {
     @Column(name = "primary_group")
     private String role;
 
-    @OneToOne(mappedBy = "uuid", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "uuidRef", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private MMOCore mmoCore;
 
     public Role() {

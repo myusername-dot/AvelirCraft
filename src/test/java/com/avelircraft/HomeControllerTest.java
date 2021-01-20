@@ -48,7 +48,7 @@ public class HomeControllerTest {
                 .andExpect(xpath("//div[@id='user_data']/a[3]")
                         .string(containsString("монеты")))
                 .andExpect(xpath("//div[@id='user_data']/a[4]")
-                        .string("8223"))
+                        .string("2h: 17m"))
                 .andExpect(xpath("//div[@id='user_data']/a[5]")
                         .string("1"))
                 .andExpect(xpath("//div[@id='user_data']/a[6]")
