@@ -83,39 +83,38 @@ public class HomeControllerTest {
     @Sql(value = {"/create-guide-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-guide-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void guideMenuPageTags() throws Exception {
-        // Why does not it work?
-//        this.mockMvc.perform(get("/guidmenu").param("tags", "два+3три"))
-//                .andExpect(status().isOk())
-//                .andExpect(xpath("//div[@id='guides']/div").nodeCount(2))
-//                .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Заголовок гайда №2")))
-//                .andExpect(xpath("//div[@id='guides']/div[2]/div[1]").string(containsString("Гайд 1")));
-//
-//        this.mockMvc.perform(get("/guidmenu").param("tags", "odin1"))
-//                .andExpect(status().isOk())
-//                .andExpect(xpath("//div[@id='guides']/div").nodeCount(1))
-//                .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Гайд 1")));
-//
-//        this.mockMvc.perform(get("/guidmenu").param("tags", "3три+odin1"))
-//                .andExpect(status().isOk())
-//                .andExpect(xpath("//div[@id='guides']/div").nodeCount(1))
-//                .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Гайд 1")));
-//
-//        this.mockMvc.perform(get("/guidmenu").param("tags", "odin1+3три"))
-//                .andExpect(status().isOk())
-//                .andExpect(xpath("//div[@id='guides']/div").nodeCount(1))
-//                .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Гайд 1")));
-//
-//        this.mockMvc.perform(get("/guidmenu").param("tags", "4four4"))
-//                .andExpect(status().isOk())
-//                .andExpect(xpath("//div[@id='guides']/div").nodeCount(1))
-//                .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Header №3")));
-//
-//        this.mockMvc.perform(get("/guidmenu").param("tags", "odin1+4four4"))
-//                .andExpect(status().isOk())
-//                .andExpect(xpath("//div[@id='guides']/div").nodeCount(0));
-//
-//        this.mockMvc.perform(get("/guidmenu").param("tags", "null"))
-//                .andExpect(status().isOk())
-//                .andExpect(xpath("//div[@id='guides']/div").nodeCount(0));
+        this.mockMvc.perform(get("/guidmenu").param("tags", "два 3три"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//div[@id='guides']/div").nodeCount(2))
+                .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Заголовок гайда №2")))
+                .andExpect(xpath("//div[@id='guides']/div[2]/div[1]").string(containsString("Гайд 1")));
+
+        this.mockMvc.perform(get("/guidmenu").param("tags", "odin1"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//div[@id='guides']/div").nodeCount(1))
+                .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Гайд 1")));
+
+        this.mockMvc.perform(get("/guidmenu").param("tags", "3три odin1"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//div[@id='guides']/div").nodeCount(1))
+                .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Гайд 1")));
+
+        this.mockMvc.perform(get("/guidmenu").param("tags", "odin1 3три"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//div[@id='guides']/div").nodeCount(1))
+                .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Гайд 1")));
+
+        this.mockMvc.perform(get("/guidmenu").param("tags", "4four4"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//div[@id='guides']/div").nodeCount(1))
+                .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Header №3")));
+
+        this.mockMvc.perform(get("/guidmenu").param("tags", "odin1 4four4"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//div[@id='guides']/div").nodeCount(0));
+
+        this.mockMvc.perform(get("/guidmenu").param("tags", "null"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//div[@id='guides']/div").nodeCount(0));
     }
 }
