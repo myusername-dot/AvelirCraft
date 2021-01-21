@@ -1,0 +1,15 @@
+﻿admin Администратор
+aristokrat Аристократ
+avanture Авантюрист
+default Житель
+helper Помошник
+imperor Император
+king Король
+knaz Князь
+moder Модератор
+owner Создатель
+ownerfake Житель
+polk Полководец
+prince Принц
+tech Техник
+voin Воин

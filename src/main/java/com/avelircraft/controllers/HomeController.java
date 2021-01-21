@@ -13,11 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.zip.DataFormatException;
 
 @Controller
 @RequestMapping(path = "/")
@@ -77,23 +79,24 @@ public class HomeController extends BaseController {
                 .anyMatch(role -> role.getRole()
                         .matches("owner|fakeowner|admin|moder"));
         user = usersDataService.update(user);
-        long generalPlayTime = 0;
+        long generalPlayTimeS = 0;
         for (MyUUID uuid : user.getUuid()) {
             List<PlayTime> playTimes = uuid.getPlayTime();
             if (!playTimes.isEmpty()) {
-                generalPlayTime = playTimes.stream().mapToInt(PlayTime::getAmount).sum();
+                generalPlayTimeS = playTimes.stream().mapToInt(PlayTime::getAmount).sum();
                 break;
             }
         }
-        long hours = generalPlayTime / 3600;
-        long minutes = (generalPlayTime % 3600) / 60;
+        long days = generalPlayTimeS / 86400;
+        long hours = (generalPlayTimeS % 86400) / 3600;
+        long minutes = (generalPlayTimeS % 3600) / 60;
         MMOCore mmoCore = null;
         for (Role role : roles) {
             mmoCore = role.getMmoCore();
             if (mmoCore != null) break;
         }
         model.addAttribute("panel_access", panelAccess);
-        model.addAttribute("play_time", String.format("%dh: %dm", hours, minutes));
+        model.addAttribute("play_time", String.format("%dd: %dh: %dm", days, hours, minutes));
         model.addAttribute("lvl", mmoCore == null ? null : mmoCore.getLvl());
         model.addAttribute("class", mmoCore == null ? null : mmoCore.getClas());
         model.addAttribute("user", user);

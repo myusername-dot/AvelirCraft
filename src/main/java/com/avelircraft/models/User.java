@@ -173,6 +173,11 @@ public class User implements Serializable {
         roles.add(role);
     }
 
+    @Transient
+    public String getRoleNames() {
+        return this.roles.toString().replaceAll("\\[|\\]", "");
+    }
+
     @Transactional
     public List<Comment> getComments() {
         return comments;

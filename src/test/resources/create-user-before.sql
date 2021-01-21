@@ -14,6 +14,9 @@ INSERT INTO `authme` (`id`, `username`, `realname`, `password`, `ip`, `lastlogin
 INSERT INTO `luckperms_players` (`uuid`, `username`, `primary_group`) VALUES
 ('56071dbf-3584-3531-8f51-d06000e6fc0d', 'dante', 'owner');
 
+INSERT INTO `luckperms_players` (`uuid`, `username`, `primary_group`) VALUES
+('dante-1611222303669', 'dante', 'admin');
+
 INSERT INTO `stats_players` (`id`, `uuid`, `username`) VALUES
 (11, 0x9aebd52f4b3f3fbfaf21aacc85542371, 'Dante');
 
