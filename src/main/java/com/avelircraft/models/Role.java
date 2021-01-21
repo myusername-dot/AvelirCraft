@@ -8,14 +8,9 @@ import javax.persistence.*;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.Serializable;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.zip.DataFormatException;
@@ -28,8 +23,10 @@ public class Role extends UUIDAbstract<String> implements Serializable {
 
     static {
         roleMap = new HashMap<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(
-                new File("src/main/resources").getAbsolutePath() + "/role_map.txt"))) {
+        // new File("src/main/resources").getAbsolutePath() + "/role_map.txt")
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(
+                Objects.requireNonNull(Role.class.getClassLoader().getResourceAsStream("role_map.txt"))
+                , StandardCharsets.UTF_8))) {
             String line;
             int counter = 1;
             while ((line = br.readLine()) != null) {
@@ -37,7 +34,7 @@ public class Role extends UUIDAbstract<String> implements Serializable {
                 line = line.replaceAll("[^a-zA-Zа-яА-Я0-9 ]","");
                 String[] couple = line.split(" ");
                 if (couple.length != 2 && couple.length != 0)
-                    Logger.getGlobal().log(Level.WARNING,"role_map.txt line " + counter +
+                    Logger.getGlobal().log(Level.WARNING, "role_map.txt line \"" + line + "\" " + counter +
                             ": pairs of values must be written line by line and separated by a space");
                 else if (couple.length != 0)
                     roleMap.put(couple[0], couple[1]);
@@ -45,6 +42,7 @@ public class Role extends UUIDAbstract<String> implements Serializable {
             }
         }
         catch (Exception e) {
+            Logger.getGlobal().log(Level.WARNING, "role_map.txt read error");
             e.printStackTrace();
         }
     }
