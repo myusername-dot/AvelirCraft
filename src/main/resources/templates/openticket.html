@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css" th:href="@{css/style.css}">
-    <link rel="shortcut icon" href="img/icon/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="img/icon/favicon.png" type="image/png" />
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&family=Poppins:wght@100&family=Source+Sans+Pro:wght@200;400;600&family=Ubuntu:wght@500&display=swap"
           rel="stylesheet">
     <script src="js/scrypt.js"></script>
@@ -26,9 +26,9 @@
         <div class="logoname">Avelir Craft - RPG сервер minecarft</div>
         <div class="blockcenter">
             <div class="rightblock">
-                <br><a class="namevigs">ВИДЖЕТЫ</a></br></br>
+                </br><a class="namevigs">ВИДЖЕТЫ</a></br></br>
                 <iframe src="//misterlauncher.org/monitoring/server_id/2430/color/orange/status/mc.avelircraft.ru:25577/" height="22" frameborder="0" scrolling="no" width="90%"></iframe>
-                <hr width="80%" color="orangered" align="center" size="3px;">
+                <hr width="80%" color="orangered" align="center" size="3px;" />
                 <script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
                 <!-- VK Widget -->
                 <div id="vk_groups"></div>
@@ -38,16 +38,15 @@
 
 
                 </script>
-                <hr width="80%" color="orangered" align="center" size="3px;">
+                <hr width="80%" color="orangered" align="center" size="3px;" />
                 <iframe src="https://discordapp.com/widget?id=594485809424367626&theme=dark" width="280" height="400"
                         allowtransparency="true" frameborder="0"
                         sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-                <hr width="80%" color="orangered" align="center" size="3px;">
+                <hr width="80%" color="orangered" align="center" size="3px;" />
                 <a class="ratname">голосуй за нас</a><br/>
-                <a href="http://minecraftrating.ru/server/avelircraft/"
-                   title="Голосуй за нас на MinecarftRating.ru"><img style="pointer-events: none;"
-                                                                     src="img\icon\minecraftrating.png"></a>
-				<a href="https://misterlauncher.org/server/2430/" target="_blank"><img src="//misterlauncher.org/images/widgets/vote2.png" alt="Avelir Craft на MisterLauncher.org" title="Avelir Craft на MisterLauncher.org" width="88" height="31" /></a>
+               <a href="http://minecraftrating.ru/server/avelircraft/" title="Голосуй за нас на MinecarftRating.ru"><img style="pointer-events: none;" src="img\icon\minecraftrating.png" /></a>
+					<a href="http://monitoringminecraft.ru/server/673600" title="Проверено MonitoringMinecraft.ru"><img style="pointer-events: none;" src="img\icon\monitoringminecarft.png" /></a>
+					<a href="https://misterlauncher.org/server/2430/" title="Голосуй за нас на MisterLauncher.org"><img style="pointer-events: none;" src="img\icon\misterylauncher.png" /></a>
             </div>
             <br/>
             <div class="hello">
@@ -73,7 +72,7 @@
                 <div class="ifclose" th:if="${not open}">
                     <a style="color: lime;">Данный запрос имеет статус "Закрыто"</a>
                 </div>
-                <br><br/><a class="textnews" th:text="${request.topic}">Тема запроса</a>
+                </br><br/><a class="textnews" th:text="${request.topic}">Тема запроса</a>
                 <br/><br/>
                 <div th:if="${open}">
                     <form method="POST" enctype="multipart/form-data"
@@ -81,14 +80,14 @@
                         <textarea class="test" name="message" placeholder="Опишите свою проблему..."></textarea></p>
                         <p><input class="subs" type="submit" value="Отправить"></p>
                     </form>
-                    <br>
+                    </br>
                 </div>
                 <div class="koms">
                     <div class="solcom" th:each="comment : ${comments}">
                         <img th:if="${comment.adminIcon}" class="imagesis" src="img/icon/logadmin.png">
                         <img th:if="${not comment.adminIcon}" src="img/icon/log.png" class="imagesis"
                              th:attr="src=${comment.user.profileicon}? @{/upload/user/icon(id=${comment.user.id})} : @{img/icon/log.png}">
-                        <a class="name" th:text="${comment.user.realname}">Ник</a><br>
+                        <a class="name" th:text="${comment.user.realname}">Ник</a></br>
                         <a class="komment" th:text="${comment.message}">Введите Ваше сообщение...</a>
                     </div>
                 </div>
@@ -100,10 +99,10 @@
         <br/>
         Размещённая на настоящем сайте информация носит исключительно информационный характер и ни при каких условиях не
         является публичной офертой,
-        <br>определяемой положениями ч. 2 ст. 437 Гражданского кодекса Российской Федерации.
+        </br>определяемой положениями ч. 2 ст. 437 Гражданского кодекса Российской Федерации.
         <hr width="90%" color="gray" align="center" size="1px;">
         2020 © AvelirCraft — игровой RPG сервер minecarft!
-        <br>Создание и продвижение сайта: Andels,Amoral,POOK
+        </br>Создание и продвижение сайта: Andels,Amoral,POOK
     </div>
 </div>
 </body>
