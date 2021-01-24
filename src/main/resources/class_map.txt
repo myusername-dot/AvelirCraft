@@ -1,0 +1,15 @@
+﻿WARRIOR Воин
+MAGE Маг
+HUMAN Житель
+ARCANE-MAGE Архимаг
+BLEST-GEN Блестательный генерал
+MAG-KNIGHT Рыцарь-Чародей
+MARKSMAN Лучник
+PALADIN Паладин
+PRO-ROGUE Профессианальный Разбойник
+ROGUE Разбойник
+VICE-KAP Вице Капитан
+VIKING Викинг
+JOMSVIKING Йомс-Викинг
+ASSASSIN Асасин
+KOLDUN Колдун

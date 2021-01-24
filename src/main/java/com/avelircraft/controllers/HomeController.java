@@ -98,7 +98,7 @@ public class HomeController extends BaseController {
         model.addAttribute("panel_access", panelAccess);
         model.addAttribute("play_time", String.format("%dd: %dh: %dm", days, hours, minutes));
         model.addAttribute("lvl", mmoCore == null ? null : mmoCore.getLvl());
-        model.addAttribute("class", mmoCore == null ? null : mmoCore.getClas());
+        model.addAttribute("class", mmoCore == null ? null : mmoCore.getClassName());
         model.addAttribute("user", user);
         return "lk";
     }

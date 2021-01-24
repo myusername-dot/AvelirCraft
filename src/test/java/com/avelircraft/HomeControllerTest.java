@@ -52,7 +52,7 @@ public class HomeControllerTest {
                 .andExpect(xpath("//div[@id='user_data']/a[5]")
                         .string("1"))
                 .andExpect(xpath("//div[@id='user_data']/a[6]")
-                        .string("HUMAN"));
+                        .string("Житель"));
     }
 
     @Test

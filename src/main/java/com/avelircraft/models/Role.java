@@ -32,14 +32,15 @@ public class Role extends UUIDAbstract<String> implements Serializable {
             while ((line = br.readLine()) != null) {
                 line = line.replaceAll("[ ]", " ");
                 line = line.replaceAll("[^a-zA-Zа-яА-Я0-9 ]","");
-                String[] couple = line.split(" ");
-                if (couple.length != 2 && couple.length != 0)
+                String[] couple = line.split(" ", 2);
+                if (couple.length == 1)
                     Logger.getGlobal().log(Level.WARNING, "role_map.txt line \"" + line + "\" " + counter +
                             ": pairs of values must be written line by line and separated by a space");
-                else if (couple.length != 0)
+                else if (couple.length == 2)
                     roleMap.put(couple[0], couple[1]);
                 counter++;
             }
+            System.out.println("roleMap: " + roleMap);
         }
         catch (Exception e) {
             Logger.getGlobal().log(Level.WARNING, "role_map.txt read error");
