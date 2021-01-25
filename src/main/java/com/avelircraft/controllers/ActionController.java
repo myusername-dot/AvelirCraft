@@ -13,6 +13,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping(path = "/act")
@@ -46,14 +48,24 @@ public class ActionController extends BaseController {
                                     RedirectAttributes attr) {
         if (nId == 0)
             return new RedirectView("/");
-        User user = getCurrentUser().get();
+        User user = null;
+        try {
+            user = getCurrentUser().get();
+        } catch (Exception e) {
+            Logger.getGlobal().log(Level.WARNING, "act/news/comment, news_id = " + nId + " user is null");
+        }
         Optional<News> news = newsDataService.findById(nId);
-        if (news.isEmpty())
+        if (news.isEmpty()) {
+            Logger.getGlobal().log(Level.WARNING, "act/news/comment, news is empty, news_id = " + nId);
             return new RedirectView("/error");
+        }
         Comment comment = new Comment(user, news.get(), message);
         System.out.println(comment);
-        if (commentsDataService.save(comment) == null)
+        if (commentsDataService.save(comment) == null) {
+            Logger.getGlobal().log(Level.WARNING, "act/news/comment, error save comment, news_id = " + nId
+            + " comment = " + message);
             return new RedirectView("/error");
+        }
         //System.out.println(comment);
         attr.addAttribute("id", nId);
         return new RedirectView("/news");

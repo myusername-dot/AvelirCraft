@@ -7,17 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithUserDetails;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
 
@@ -58,7 +55,7 @@ public class HomeControllerTest {
     @Test
     @Sql(value = {"/create-news-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-news-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-    public void  homePage() throws Exception {
+    public void homePage() throws Exception {
         this.mockMvc.perform(get("/index"))
                 .andExpect(status().isOk())
                 .andExpect(xpath("//div[@id='block-content']/div").nodeCount(10))
@@ -116,5 +113,79 @@ public class HomeControllerTest {
         this.mockMvc.perform(get("/guidmenu").param("tags", "null"))
                 .andExpect(status().isOk())
                 .andExpect(xpath("//div[@id='guides']/div").nodeCount(0));
+    }
+
+    @Test
+    @Sql(value = {"/create-guide-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/delete-guide-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void guidePage() throws Exception {
+        this.mockMvc.perform(get("/guid").param("id", "4"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//div[@id='guide'][" +
+                        "contains(.,'Описание для проверки') " +
+                        "and contains(.,'odin1 два 3три')]")
+                        .exists())
+                .andExpect(xpath("//div[@id='guide'][not(" +
+                        "contains(.,'Удалить гайд'))]")
+                        .exists());
+    }
+
+    @Test
+    @WithUserDetails("Dante")
+    @Sql(value = {"/create-user-before.sql", "/create-guide-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/delete-guide-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void guidePageDeleteButton() throws Exception {
+        this.mockMvc.perform(get("/guid").param("id", "6"))
+                .andExpect(status().isOk())
+                .andExpect(authenticated())
+                .andExpect(xpath("//div[@id='guide'][" +
+                        "contains(.,'Удалить гайд') " +
+                        "and contains(.,'desc.')]")
+                        .exists());
+    }
+
+    @Test
+    @Sql(value = {"/create-news-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/delete-news-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void newsPage() throws Exception {
+        this.mockMvc.perform(get("/news").param("id", "5"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//div[@id='news'][" +
+                        "contains(.,'Обновление РПГ системы') " +
+                        "and contains(.,'Message 2') " +
+                        "and contains(.,'15.01.2021')]")
+                        .exists())
+                .andExpect(xpath("//div[@id='news'][not(" +
+                        "contains(.,'Удалить новость') " +
+                        "or contains(.,'Пожаловаться') " +
+                        "or contains(.,'Удвлить'))]")
+                        .exists());
+    }
+
+    @Test
+    @WithUserDetails("Dante")
+    @Sql(value = {"/create-user-before.sql", "/create-news-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(value = {"/delete-news-after.sql", "/delete-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    public void newsPageComments() throws Exception {
+        MockHttpServletRequestBuilder multipart = multipart("/act/news/comment")
+                .param("news_id", "5")
+                .param("message", "test comment");
+
+        this.mockMvc.perform(multipart)
+                .andExpect(authenticated())
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/news?id=5"));
+
+        this.mockMvc.perform(get("/news").param("id", "5"))
+                .andExpect(status().isOk())
+                .andExpect(xpath("//div[@id='coms']/div").nodeCount(1))
+                .andExpect(xpath("//div[@id='coms']/div[1][" +
+                        "contains(.,'Dante') " +
+                        "and contains(.,'test comment') " +
+                        "and contains(.,'Удалить')]")
+                        .exists())
+                .andExpect(xpath("//div[@id='news'][" +
+                        "contains(.,'Удалить новость')]")
+                        .exists());
     }
 }

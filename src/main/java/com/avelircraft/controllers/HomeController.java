@@ -134,7 +134,7 @@ public class HomeController extends BaseController {
                     .anyMatch(role -> role.getRole()
                             .matches("owner|fakeowner|admin|moder"));
         }
-        model.addAttribute("guid", guide.get());
+        model.addAttribute("guide", guide.get());
         model.addAttribute("delete_access", deleteAccess);
         return "guid";
     }
