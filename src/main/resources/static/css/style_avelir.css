@@ -1,0 +1,298 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	padding: 0;
+	 margin: 0;
+}
+
+a {
+	text-decoration: inherit;
+	color: inherit;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+.visualy-hidden {
+	position: absolute;
+	clip: rect(1px, 1px, 1px, 1px);
+	padding: 0;
+	border: 0;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+.__center-container {
+	width: 1220px;
+	margin: 0 auto;
+}
+
+.__center-container-wide {
+	width: 1690px;
+	margin: 0 auto;
+}
+
+.page-header,
+main,
+.page-footer,
+body {
+	min-width: 1700px;
+}
+
+.__wrapper-for-footer {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	margin: 0 auto;
+}
+
+.__wrapper-for-content {
+	flex: 1 0 auto;
+	flex-grow: 1;
+}
+
+/**/
+
+body {
+	background-color: #282828;
+}
+
+.page-header {
+	height: 100px;
+	background: #191A1B;
+	color: white;
+}
+
+.page-header-nav-list {
+	height: 100px;
+	list-style: none;
+	display: flex;
+	font-size: 26px;
+	font-family: 'Comfortaa', sans-serif;
+	font-weight: 600;
+	justify-content: center;
+	min-height: inherit;
+	align-items: center;
+}
+
+.page-header-nav-item:not(:last-of-type) {
+	margin-right: 40px;
+}
+
+.page-header-nav-item a:hover {
+	color: silver;
+	border-bottom: 2px solid silver;
+}
+
+.page-header-nav-item a:active {
+	color: #5C5C5C;
+	border-bottom: 2px solid #5C5C5C;
+}
+
+main {
+	background: #282828 url('../img/bg.jpg') no-repeat top center;
+	padding-top: 30px;
+	background-position: center -50px;
+}
+
+.__main-grid {
+	display: grid;
+	grid-template-columns: 1fr 300px;
+	grid-template-rows: minmax(95px, auto) minmax(150px, auto) auto;
+	gap: 10px;
+}
+
+h1 {
+	font-family: 'Ubuntu', sans-serif;
+	color: white;
+	font-size: 50px;
+	font-weight: 400;
+	text-align: center;
+	grid-column: 1 / -1;
+	grid-row: 1 / 2;
+}
+
+.welcome {
+	box-sizing: border-box;
+	background-color: #1E2024;
+	padding: 10px 20px;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: white;
+	font-size: 15px;
+    float: left;
+	border-radius: 10px;
+}
+
+.welcome-title {
+	text-align: left;
+	color: silver;
+	font-size: 25px;
+	margin-bottom: 20px;
+	font-weight: 400;
+}
+
+.welcome-text {
+	
+}
+
+.welcome-heart {
+	color: red;
+}
+
+.widgets-title {
+	color: white;
+	font-size: 30px;
+	padding-bottom: 5px;
+	text-align: center;
+	padding-top: 15px;
+	box-sizing: border-box;
+	font-weight: 400;
+}
+
+.widgets {
+	background-color: #1E2024;
+	grid-column: 2/3;
+	grid-row: 2/4;
+	align-self: start;
+	border-radius: 10px;
+	padding-bottom: 10px;
+}
+
+.__widgets-wrapper {
+	width: 280px;
+	margin: 0 auto;
+}
+
+.widgets-server-stats {
+	background-color: #1E2024;
+	margin: 0 auto;
+}
+
+.__widgets-line {
+	border-bottom: 3px solid orangered;
+	width: 85%;
+	margin: 10px auto;
+}
+
+.widgets-vote-text {
+	color: white;
+    font-size: 20px;
+	display: block;
+	text-align: center;
+	margin-bottom: 5px;
+	margin-top: -5px;
+}
+
+.widgets-vote-list {
+	list-style: none;
+	display: flex;
+	justify-content: center;
+}
+
+.widgets-vote-item:not(:last-of-type) {
+	margin-right: 5px;
+}
+
+.news-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 10px;
+	list-style: none;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: silver;
+	font-size: 20px;
+}
+
+.news-item {
+	background-color: #1E2024;
+	border-radius: 10px;
+	min-height: 440px; /*Для разметки*/
+}
+
+.news-article {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.news-article > img:first-of-type{
+	border-radius: 10px 10px 0 0;
+}
+
+.news-article .__wrapper-for-footer {
+	min-height: 280px;
+	flex-grow: 1;
+	width: 90%;
+}
+
+.news-article-title {
+	color: white;
+	font-weight: 400;
+	font-size: 30px;
+}
+
+.news-article-footer {
+	margin-top: 5px;
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 10px 0;
+	border-top: 1px dotted white;
+}
+
+.news-article-footer img {
+	margin-right: 5px;
+}
+
+.news-article-footer time {
+	margin-right: 15px;
+}
+
+.news-article-footer-btn {
+	color: white;
+	font-size: 20px;
+	width: 150px;
+	text-align: center;
+	height: 28px;
+	margin-right: 5px;
+	background: #18191C;
+	text-decoration: none;
+	border-radius: 3px;
+	border: white solid 2px;
+	margin-left: auto;
+}
+
+.news-article-footer-btn:hover {
+	color: orangered;
+	background: black;
+	border: orangered solid 2px;
+}
+
+.news-article-footer-btn:active {
+	color: #A32C00;
+	background: black;
+	border: #A32C00 solid 2px;
+}
+
+
+.page-footer {
+	background-color: #1E2024;
+	color: gray;
+	text-align: center;
+	flex: 0 0 auto;
+	margin-top: 20px;
+}
+
+.page-footer p {
+	padding: 10px 0;
+}
+
+
+
+
+
+

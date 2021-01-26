@@ -56,11 +56,11 @@ public class HomeControllerTest {
     @Sql(value = {"/create-news-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(value = {"/delete-news-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
     public void homePage() throws Exception {
-        this.mockMvc.perform(get("/index"))
+        this.mockMvc.perform(get("/home"))
                 .andExpect(status().isOk())
-                .andExpect(xpath("//div[@id='block-content']/div").nodeCount(10))
-                .andExpect(xpath("//div[@id='block-content']/div[@data-id=3]").exists())
-                .andExpect(xpath("//div[@id='block-content']/div[@data-id=5]").exists());
+                .andExpect(xpath("//ul[@id='news-list']/li").nodeCount(10))
+                .andExpect(xpath("//ul[@id='news-list']//div[@data-id=3]").exists())
+                .andExpect(xpath("//ul[@id='news-list']//div[@data-id=5]").exists());
     }
 
     @Test
@@ -70,7 +70,6 @@ public class HomeControllerTest {
         this.mockMvc.perform(get("/guidmenu"))
                 .andExpect(status().isOk())
                 .andExpect(xpath("//div[@id='guides']/div").nodeCount(3))
-                // На самом деле Header №3 будет снизу, а Гайд 1 сверху, так уж написал фронтендер
                 .andExpect(xpath("//div[@id='guides']/div[1]/div[1]").string(containsString("Header №3")))
                 .andExpect(xpath("//div[@id='guides']/div[2]/div[1]").string(containsString("Заголовок гайда №2")))
                 .andExpect(xpath("//div[@id='guides']/div[3]/div[1]").string(containsString("Гайд 1")));

@@ -37,17 +37,14 @@ public class HomeController extends BaseController {
     @Autowired
     private SupportRequestsDataService supportDataService;
 
-//    @Autowired
-//    private PlatformTransactionManager transactionManager;
-
-    @RequestMapping(path = {"/", "/index.html", "/index"})
-    public String indexPage(Model model) {
+    @RequestMapping(path = {"/", "/index.html", "/index", "/home", "/home.html"})
+    public String homePage(Model model) {
         List<News> news = Stream.concat(newsDataService.findAll()
                 .stream(), Stream.generate(News::new))
                 .limit(10)
                 .collect(Collectors.toList());
         model.addAttribute("news", news);
-        return "index";
+        return "home";
     }
 
     @RequestMapping(path = {"/news.html", "/news"})
@@ -203,5 +200,17 @@ public class HomeController extends BaseController {
     @RequestMapping(path = {"/register.html", "/register"})
     public String registerPage(Model model) {
         return "register";
+    }
+
+    //__________________________________old_______________________________________
+
+    @RequestMapping(path = {"/index2.html", "/index2", "/index_old", "/index_old.html"})
+    public String indexPageOld(Model model) {
+        List<News> news = Stream.concat(newsDataService.findAll()
+                .stream(), Stream.generate(News::new))
+                .limit(10)
+                .collect(Collectors.toList());
+        model.addAttribute("news", news);
+        return "index_old";
     }
 }

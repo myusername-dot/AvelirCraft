@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css" th:href="@{css/style.css}"/>
+    <link rel="shortcut icon" href="img/icon/favicon.png" type="image/png"/>
+    <script src="js/scrypt.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&amp;family=Poppins:wght@100&amp;family=Source+Sans+Pro:wght@200;400;600&amp;family=Ubuntu:wght@500&amp;display=swap" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <title>Avelir Craft</title>
+</head>
+<body>
+<div class="osnova">
+    <div class="upmenu">
+        <ul>
+            <li class="menu"><a class="menulink" href="index.html">Главная</a></li>
+            <li class="menu"><a class="menulink" >Новости</a></li>
+            <li class="menu"><a class="menulink" href="donate.html">Донат</a></li>
+            <li class="menu"><a class="menulink" href="lk.html">Личный кабинет</a></li>
+            <li class="menu"><a class="menulink" href="support.html">Тех.поддержка</a></li>
+            <li class="menu"><a class="menulink" href="guidmenu.html">Помощь</a></li>
+        </ul>
+    </div>
+    <div class="glav">
+        <div class="logoname">Avelir Craft - RPG сервер minecarft</div>
+        <div class="blockcenter">
+            <div class="rightblock">
+                <br/><a class="namevigs">ВИДЖЕТЫ</a>
+                <iframe src="//misterlauncher.org/monitoring/server_id/2430/color/orange/status/mc.avelircraft.ru:25577/"
+                        height="22" frameborder="0" scrolling="no" width="90%"></iframe>
+                <hr width="80%" color="orangered" align="center" size="3px;"/>
+                <script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+                <!-- VK Widget -->
+                <div id="vk_groups"></div>
+                <script type="text/javascript">
+					VK.Widgets.Group("vk_groups", {mode: 4, width: "280", height: "400", color1: '1E2024', color2: 'FFFFFF', color3: 'FF4500'}, 191168008);
+
+                </script>
+                <hr width="80%" color="orangered" align="center" size="3px;"/>
+                <iframe src="https://discordapp.com/widget?id=594485809424367626&amp;theme=dark" width="280" height="400"
+                        allowtransparency="true" frameborder="0"
+                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                <hr width="80%" color="orangered" align="center" size="3px;"/>
+                <a class="ratname">голосуй за нас</a><br/>
+                <a href="http://minecraftrating.ru/server/avelircraft/" title="Голосуй за нас на MinecarftRating.ru"><img style="pointer-events: none;" src="img\icon\minecraftrating.png" /></a>
+					<a href="http://monitoringminecraft.ru/server/673600" title="Проверено MonitoringMinecraft.ru"><img style="pointer-events: none;" src="img\icon\monitoringminecarft.png" /></a>
+					<a href="https://misterlauncher.org/server/2430/" title="Голосуй за нас на MisterLauncher.org"><img style="pointer-events: none;" src="img\icon\misterylauncher.png" /></a>
+            </div>
+            <br/>
+            <div class="hello">
+                <a class="hi">Добро пожаловать, игрок!</a>
+                <br/><br/>На нашем сервере ты найдёшь много интересных игровых элементов.
+                <br/>На сайте вы сможете следить за новостями,искать гайды,нужную информацию по серверу,а так же
+                преобрести донат.
+                <br/>Вся администрация старается для улучшения сервера!Если вам не сложно,поддержите нас морально ^-^
+                <br/>Сделано с любовью<a style="color: red;">❤</a>
+            </div>
+            <div id="block-content" class="block-content" th:each="report : ${news}">
+                <div th:data-id="${report.id}" class="netrog" th:object="${report}">
+                    <img class="lognews" src="img\news\bg.jpg"
+                         th:attr="src=*{imgName}? @{\upload\image(id=*{imgName})} : @{img\news\bg.jpg}"
+                         style="pointer-events: none;width:450px; height:160px;" alt="Логотип Новости" />
+                    <a class="tagnews" th:text="*{header}">Тестовый заголовок </a><br/>
+                    <div class="texnws">
+                        <a class="textnews" th:text="*{description}">
+                            Тестовое описание нового обновление,суть которого мы пока не знаем,но обязательно добавим
+                            ^-^
+                        </a>
+                    </div>
+                    <div class="bottom-content">
+                        <br/>
+                        <img src="img\icon\date.png" style="width:15px;pointer-events: none;" alt="Дата публикации"/><a
+                            class="dat-sie" th:text="${#dates.format(report.date,'dd.MM.yyy')}">11.11.1111</a> <img
+                            src="img\icon\eye.png" style="width:15px;pointer-events: none;" alt="Просмотров"/><a
+                            class="dat-sie" th:text="*{views}">1111</a>
+                        <a href="news.html" th:href="@{news.html(id=*{id})}" class="podrob">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+        <br/>
+        Размещённая на настоящем сайте информация носит исключительно информационный характер и ни при каких условиях не
+        является публичной офертой,
+        <br/>определяемой положениями ч. 2 ст. 437 Гражданского кодекса Российской Федерации.
+        <hr width="90%" color="gray" align="center" size="1px;"/>
+        2020 © AvelirCraft — игровой RPG сервер minecarft!
+        <br/>Создание и продвижение сайта: Andels,Amoral,POOK
+    </div>
+</div>
+</body>
+</html>

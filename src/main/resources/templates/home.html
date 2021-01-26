@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Avelir Craft</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&amp;family=Poppins:wght@100&amp;family=Source+Sans+Pro:wght@200;400;600&amp;family=Ubuntu:wght@500&amp;display=swap"/>
+    <link rel="stylesheet" href="css/style_avelir.css" th:href="@{css/style_avelir.css}"/>
+</head>
+
+<body>
+<div class="__wrapper-for-footer">
+    <div class="__wrapper-for-content">
+        <header class="page-header">
+            <div class="__center-container">
+                <nav class="page-header-nav">
+                    <ul class="page-header-nav-list">
+                        <li class="page-header-nav-item"><a href="/">Главная</a></li>
+                        <li class="page-header-nav-item"><a href="#">Новости</a></li>
+                        <li class="page-header-nav-item"><a href="/donate">Донат</a></li>
+                        <li class="page-header-nav-item"><a href="/lk">Личный кабинет</a></li>
+                        <li class="page-header-nav-item"><a href="/support">Тех.поддержка</a></li>
+                        <li class="page-header-nav-item"><a href="/guidmenu">Помощь</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            <div class="__center-container">
+                <div class="__main-grid">
+                    <h1>Avelir Craft - RPG сервер minecarft</h1>
+                    <section class="welcome">
+                        <h2 class="welcome-title">Добро пожаловать, игрок!</h2>
+                        <p class="welcome-text">На нашем сервере ты найдёшь много интересных игровых элементов<br/>
+                            На сайте вы сможете следить за новостями,искать гайды,нужную информацию по серверу,а так же
+                            преобрести донат.<br/>
+                            Вся администрация старается для улучшения сервера! Если вам не сложно,поддержите нас морально
+                            ^-^<br/>
+                            Сделано с любовью <span class="welcome-heart">❤</span></p>
+                    </section>
+                    <aside class="widgets">
+                        <div class="__widgets-wrapper">
+                            <h2 class="widgets-title">ВИДЖЕТЫ</h2>
+                            <!-- widgets-source-->
+                            <iframe src="//misterlauncher.org/monitoring/server_id/2430/color/orange/status/mc.avelircraft.ru:25577/"
+                                    height="22" frameborder="0" scrolling="no" width="90%" class="widgets-server-stats">
+                            </iframe>
+                            <div class="__widgets-line"></div>
+                            <script type="text/javascript" src="https://vk.com/js/api/openapi.js?168"></script>
+                            <!-- VK Widget -->
+                            <div id="vk_groups"></div>
+                            <script type="text/javascript">
+				VK.Widgets.Group("vk_groups", {mode: 4, width: "280", height: "400", color1: '1E2024', color2: 'FFFFFF', color3: 'FF4500'}, 191168008);
+
+
+                            </script>
+                            <div class="__widgets-line"></div>
+                            <iframe src="https://discordapp.com/widget?id=594485809424367626&amp;theme=dark" width="280"
+                                    height="400"
+                                    allowtransparency="true" frameborder="0"
+                                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+                            </iframe>
+                            <div class="__widgets-line"></div>
+                            <a class="widgets-vote-text">голосуй за нас</a>
+
+                            <ul class="widgets-vote-list">
+                                <li class="widgets-vote-item">
+                                    <a href="http://minecraftrating.ru/server/avelircraft/"
+                                       title="Голосуй за нас на MinecarftRating.ru">
+                                        <img style="pointer-events: none;" src="img/icon/minecraftrating.png"
+                                             alt="Логотип minecraftrating"/>
+                                    </a>
+                                </li>
+                                <li class="widgets-vote-item">
+                                    <a href="http://monitoringminecraft.ru/server/673600"
+                                       title="Проверено MonitoringMinecraft.ru">
+                                        <img style="pointer-events: none;" src="img/icon/monitoringminecarft.png"
+                                             alt="Логотип monitoringminecarft"/>
+                                    </a>
+                                </li>
+                                <li class="widgets-vote-item">
+                                    <a href="https://misterlauncher.org/server/2430/"
+                                       title="Голосуй за нас на MisterLauncher.org">
+                                        <img style="pointer-events: none;" src="img/icon/misterylauncher.png"
+                                             alt="Логотип misterylauncher"/>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!-- -->
+                        </div>
+                    </aside>
+                    <section class="news">
+                        <h2 class="news-title visualy-hidden">Новости</h2>
+                        <ul id="news-list" class="news-list">
+                            <li class="news-item" th:each="report : ${news}">
+                                <!-- For test -->
+                                <div th:data-id="${report.id}" class="netrog" th:object="${report}"> <!-- -->
+                                    <article class="news-article">
+                                        <img src="img/news/bg.jpg"
+                                             th:attr="src=*{imgName}? @{/upload/image(id=*{imgName})} : @{img/news/bg.jpg},
+                                             alt=*{imgName}? *{imgName} : 'bg.jpg'"
+                                             style="pointer-events: none;width:100%; height:160px;"
+                                             alt="Логотип Новости"/><!-- alt должен быть уникальным -->
+                                        <div class="__wrapper-for-footer">
+                                            <div class="__wrapper-for-content">
+                                                <h3 class="news-article-title" th:text="*{header}">Тестовый
+                                                    заголовок</h3>
+                                                <p class="news-article-text" th:text="*{description}">
+                                                    Тестовое описание нового обновление,суть которого мы пока не
+                                                    знаем,но обязательно добавим ^-^
+                                                </p>
+                                            </div>
+                                            <footer class="news-article-footer">
+                                                <img src="img/icon/date.png" style="width:15px; pointer-events: none;"
+                                                     alt="Дата публикации"
+                                                     th:attr="alt=*{date} ? ${#dates.format(report.date,'dd.MM.yyy')} : 'Дата публикации'"/>
+                                                <time datetime="2021-01-26"
+                                                      th:datetime="${#dates.format(report.date,'yyy-MM-dd')}"
+                                                      th:text="${#dates.format(report.date,'dd.MM.yyy')}">26.01.2021
+                                                </time>
+                                                <img src="img/icon/eye.png" style="width:15px;pointer-events: none;"
+                                                     alt="Просмотров" th:attr="alt=*{views} ? *{views} : 'Просмотров'"/>
+                                                <span th:text="*{views}">15</span>
+                                                <a href="news.html" th:href="@{news.html(id=*{id})}"
+                                                   class="news-article-footer-btn">Подробнее</a>
+                                            </footer>
+                                        </div>
+                                    </article>
+                                    <!-- For test --> </div> <!-- -->
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="page-footer">
+        <div class="__center-container-wide">
+            <p class="legal">Размещённая на настоящем сайте информация носит исключительно информационный характер и ни
+                при каких условиях не является публичной офертой,<br/>
+                определяемой положениями ч. 2 ст. 437 Гражданского кодекса Российской Федерации.</p>
+            <div style="border-bottom: 1px solid gray; height: 1px;"></div>
+            <p class="copyright">2020 © AvelirCraft — игровой RPG сервер minecarft!<br/>
+                Создание и продвижение сайта: Andels,Amoral,POOK</p>
+        </div>
+    </footer>
+</div>
+</body>
+</html>

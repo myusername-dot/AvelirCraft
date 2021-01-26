@@ -27,7 +27,9 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/css/**", "/img/**", "/js/**")
                 .permitAll()
-                .antMatchers(HttpMethod.GET, "/index", "/index.html", "/",
+                .antMatchers(HttpMethod.GET,
+                        "/", "/index", "/index.html", "/home", "/home.html",
+                        "/index2", "/index2.html", "/index_old", "/index_old.html",
                         "/guidmenu", "/guidmenu.html",
                         "/guid*", "/guid.html*",
                         "/donate", "/donate.html",

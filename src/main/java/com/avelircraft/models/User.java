@@ -46,6 +46,25 @@ public class User implements Serializable {
 
     public User() {}
 
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    @Transient
+    public String getRoleNames() {
+        return this.roles.toString().replaceAll("\\[|\\]", "");
+    }
+
+    @Transactional(readOnly = true)
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    @Transactional(readOnly = true)
+    public List<MyUUID> getUuid() {
+        return uuid;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -136,35 +155,6 @@ public class User implements Serializable {
         this.realname = realname;
     }
 
-    @Override
-    public String toString() {
-        return "Users{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", realname='" + realname + '\'' +
-                ", password='" + password + '\'' +
-                ", ip='" + ip + '\'' +
-                ", lastlogin=" + lastlogin +
-                ", x=" + x +
-                ", y=" + y +
-                ", z=" + z +
-                ", world='" + world + '\'' +
-                ", regdate=" + regdate +
-                ", regip='" + regip + '\'' +
-                ", yaw=" + yaw +
-                ", pitch=" + pitch +
-                ", email='" + email + '\'' +
-                ", isLogged=" + isLogged +
-                ", hasSession=" + hasSession +
-                ", totp='" + totp + '\'' +
-                '}';
-    }
-
-    //    @Transactional(readOnly = true)
-    public List<Role> getRoles() {
-        return roles;
-    }
-
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
@@ -173,23 +163,8 @@ public class User implements Serializable {
         roles.add(role);
     }
 
-    @Transient
-    public String getRoleNames() {
-        return this.roles.toString().replaceAll("\\[|\\]", "");
-    }
-
-    @Transactional
-    public List<Comment> getComments() {
-        return comments;
-    }
-
     public void setComments(List<Comment> comments) {
         this.comments = comments;
-    }
-
-    @Transactional
-    public List<MyUUID> getUuid() {
-        return uuid;
     }
 
     public void setUuid(List<MyUUID> uuid) {
@@ -266,5 +241,29 @@ public class User implements Serializable {
 
     public void setProfileicon(Boolean profileicon) {
         this.profileicon = profileicon;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", realname='" + realname + '\'' +
+                ", password='" + password + '\'' +
+                ", ip='" + ip + '\'' +
+                ", lastlogin=" + lastlogin +
+                ", x=" + x +
+                ", y=" + y +
+                ", z=" + z +
+                ", world='" + world + '\'' +
+                ", regdate=" + regdate +
+                ", regip='" + regip + '\'' +
+                ", yaw=" + yaw +
+                ", pitch=" + pitch +
+                ", email='" + email + '\'' +
+                ", isLogged=" + isLogged +
+                ", hasSession=" + hasSession +
+                ", totp='" + totp + '\'' +
+                '}';
     }
 }
