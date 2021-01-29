@@ -114,7 +114,7 @@
                                             <footer class="news-article-footer">
                                                 <img src="img/icon/date.png" style="width:15px; pointer-events: none;"
                                                      alt="Дата публикации"
-                                                     th:attr="alt=*{date} ? ${#dates.format(report.date,'dd.MM.yyy')} : 'Дата публикации'"/>
+                                                     th:attr="alt=*{date} ? *{date} : 'Дата публикации'"/>
                                                 <time datetime="2021-01-26"
                                                       th:datetime="${#dates.format(report.date,'yyy-MM-dd')}"
                                                       th:text="${#dates.format(report.date,'dd.MM.yyy')}">26.01.2021
