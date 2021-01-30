@@ -13,7 +13,7 @@ a {
 
 html,
 body {
-	height: 100%;
+	min-height: 100vh;
 }
 
 .visualy-hidden {
@@ -53,6 +53,12 @@ body {
 .__wrapper-for-content {
 	flex: 1 0 auto;
 	flex-grow: 1;
+}
+
+.__body__wrapper_footer-bottom {
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	min-height: 100vh;
 }
 
 /**/
@@ -102,8 +108,11 @@ main {
 .__main-grid {
 	display: grid;
 	grid-template-columns: 1fr 300px;
-	grid-template-rows: minmax(95px, auto) minmax(150px, auto) auto;
+	grid-template-rows: minmax(95px, auto) auto; /*minmax(150px, auto) */
 	gap: 10px;
+	grid-template-areas:
+		'h1_title 	h1_title'
+		'content 	widgets'
 }
 
 h1 {
@@ -112,35 +121,15 @@ h1 {
 	font-size: 50px;
 	font-weight: 400;
 	text-align: center;
-	grid-column: 1 / -1;
-	grid-row: 1 / 2;
+	grid-area: h1_title;
 }
 
-.welcome {
-	box-sizing: border-box;
+.widgets {
 	background-color: #1E2024;
-	padding: 10px 20px;
-	font-family: 'Source Sans Pro', sans-serif;
-	color: white;
-	font-size: 15px;
-    float: left;
+	align-self: start;
 	border-radius: 10px;
-}
-
-.welcome-title {
-	text-align: left;
-	color: silver;
-	font-size: 25px;
-	margin-bottom: 20px;
-	font-weight: 400;
-}
-
-.welcome-text {
-	
-}
-
-.welcome-heart {
-	color: red;
+	padding-bottom: 10px;
+	grid-area: widgets;
 }
 
 .widgets-title {
@@ -151,15 +140,6 @@ h1 {
 	padding-top: 15px;
 	box-sizing: border-box;
 	font-weight: 400;
-}
-
-.widgets {
-	background-color: #1E2024;
-	grid-column: 2/3;
-	grid-row: 2/4;
-	align-self: start;
-	border-radius: 10px;
-	padding-bottom: 10px;
 }
 
 .__widgets-wrapper {
@@ -195,6 +175,43 @@ h1 {
 
 .widgets-vote-item:not(:last-of-type) {
 	margin-right: 5px;
+}
+
+.__content {
+	grid-area: content;
+}
+
+.__content__home {
+	display: grid;
+	grid-template-rows: minmax(150px, auto) 1fr;
+	gap: 10px;
+}
+
+.welcome {
+	box-sizing: border-box;
+	background-color: #1E2024;
+	padding: 10px 20px;
+	font-family: 'Source Sans Pro', sans-serif;
+	color: white;
+	font-size: 15px;
+	text-align: left;
+	border-radius: 10px;
+}
+
+.welcome-title {
+	text-align: left;
+	color: silver;
+	font-size: 25px;
+	margin-bottom: 20px;
+	font-weight: 400;
+}
+
+.welcome-text {
+	
+}
+
+.welcome-heart {
+	color: red;
 }
 
 .news-list {
