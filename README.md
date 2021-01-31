@@ -1,5 +1,5 @@
 # Avelir Craft
 
-This is a web application for the minecraft server
+This is a web application for the minecraft server.
 
-Frontend by Egor-Jambulat
+Frontend by Egor-Jambulat and MrShnaider.
